@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: #070a0f;
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: 'ss01';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid #3fe0d0;
+    outline-offset: 2px;
+  }
+
+  /* Range inputs are the primary instrument here, so they get real styling. */
+  input[type='range'] {
+    appearance: none;
+    height: 2px;
+    background: #1b2530;
+    border-radius: 999px;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #3fe0d0;
+    cursor: pointer;
+  }
+
+  input[type='range']::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #3fe0d0;
+    cursor: pointer;
+  }
+
+  input[type='checkbox'] {
+    accent-color: #3fe0d0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1b2530;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .chip {
+    @apply rounded border border-hair px-3 py-1.5 text-sm text-slate transition-colors hover:border-slate/60 hover:text-mist;
+  }
+
+  .chip-on {
+    @apply border-cyan/60 bg-cyan/10 text-cyan;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
