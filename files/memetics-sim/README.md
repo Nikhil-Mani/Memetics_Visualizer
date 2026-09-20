@@ -2,6 +2,8 @@
 
 An existing React / Zustand / Canvas simulation upgraded to real tweet embeddings and trait-dependent Darwinian selection. Agent bounded confidence, retrospective peer trust, learning, and societal plasticity retain their original equations.
 
+For a presenter-friendly explanation, demo script, metric reference, and judge Q&A, see the [Hackathon Guide](docs/HACKATHON_GUIDE.md).
+
 ## Run and required data
 
 ```sh
@@ -52,7 +54,7 @@ If the tweet pipeline applied extra preprocessing or a saved projection, apply i
 
 ## Views
 
-Meme Cosmos renders all 200 stationary white/gray roots, smaller mutations, curved parent links, and projected trait anchors. The viewport is calibrated to real roots and anchors with manual zoom controls. Click a node or a meme-table row for its root text, generation, cosine drift, trait radar, all five candidate fitness scores, and platform/agent fitness contributions. The radar maps cosine −1 to its center, 0 to its middle ring, and +1 to its edge.
+Meme Cosmos renders all 200 stationary colored roots, smaller mutations, curved parent links, and projected trait anchors. The viewport is calibrated to real roots and anchors with manual zoom controls. Click a node or a meme-table row for its root text, generation, cosine drift, trait radar, all five candidate fitness scores, and platform/agent fitness contributions. The radar maps cosine −1 to its center, 0 to its middle ring, and +1 to its edge.
 
 The velocity scatter groups held descendants by root: x is mean virality; y is mean `(root cosine distance / generation)`. This is an average displacement per generation, not cumulative path length or a time derivative. Colors indicate root rationality. Selection incentives do not guarantee migration or survival: bounded confidence still gates transmission, and the 2D projection omits most dimensions.
 
@@ -66,7 +68,7 @@ The activity table defaults to **Latest mutations**, displaying variant IDs and 
 
 ## Adjustable monochrome workspace
 
-The interface takes its black-and-white palette, large typography, numbered labels, and thin borders from the supplied visual reference, https://joshuadayal.com/. Rationality is now represented by a white-to-gray luminance scale across charts and canvases, with numeric values retained in inspectors and tables.
+The interface takes its black-and-white palette, large typography, numbered labels, and thin borders from the supplied visual reference, https://joshuadayal.com/. The interface remains black and white; data uses cyan → amber → pink for rational → mixed → irrational content (and high → low agent rigor). Trait anchors use cyan for rigor, pink for outrage, violet for absurdity, and amber for simplicity. Blue distinguishes trust edges and transmission metrics; violet highlights mutation and polarisation metrics. Numeric values and labels remain available alongside colors.
 
 All workspace panels have independent width and height controls. Drag the right edge for width, the bottom edge for height, or the bottom-right corner for both. Tab to a resize handle and use arrow keys (20px), Shift + arrow keys (60px), or Home to reset that panel. Double-clicking a handle also resets its panel. Dimensions are saved in localStorage; **Reset layout** restores defaults without restarting the simulation. Panels wrap as widths change and adapt to narrow screens. Canvas backing sizes follow their panel via ResizeObserver.
 

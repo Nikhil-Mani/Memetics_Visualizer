@@ -2,6 +2,7 @@ import { useSimStore } from '../store/useSimStore';
 import Sparkline from './Sparkline';
 import { num, pct, rampCss, rigorCss } from './palette';
 import { dot } from '../core/math/vector';
+import { TRAIT_COLORS } from './palette';
 import { TRAITS } from '../core/data/loadDataset';
 
 export default function AgentInspector() {
@@ -55,7 +56,7 @@ export default function AgentInspector() {
             series={susSeries}
             color={rampCss(agent.emotionalSusceptibility)}
           />
-          <Drift label="Bounded confidence τ" value={agent.boundedConfidence} series={confSeries} color="#d0d0d0" />
+          <Drift label="Bounded confidence τ" value={agent.boundedConfidence} series={confSeries} color="#b69aff" />
         </div>
         <p className="mt-3 text-xs text-slate">
           Learning rate α {num(agent.learningRate)} — worldview shift per accepted meme.
@@ -77,7 +78,8 @@ export default function AgentInspector() {
                     style={{
                       left: v >= 0 ? '50%' : `${50 + v * 50}%`,
                       width: `${Math.abs(v) * 50}%`,
-                      background: v >= 0 ? '#f3f3ef' : '#999999',
+                      background: TRAIT_COLORS[axis],
+                      opacity: v >= 0 ? 1 : 0.6,
                     }}
                   />
                 </span>
@@ -115,7 +117,7 @@ export default function AgentInspector() {
               className="border-l-2 pl-3 font-mono text-[11px] leading-relaxed text-slate"
               style={{
                 borderColor: rampCss(entry.irrationality, entry.kind === 'adopt' ? 0.9 : 0.35),
-                color: entry.kind === 'adopt' ? '#f0f0f0' : undefined,
+                color: entry.kind === 'adopt' ? '#3ee0d0' : entry.kind === 'reject' || entry.kind === 'gate' ? '#ff9abf' : undefined,
               }}
             >
               {entry.text}

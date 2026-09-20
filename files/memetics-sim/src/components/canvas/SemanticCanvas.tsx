@@ -64,7 +64,7 @@ export default function SemanticCanvas() {
       for (let bin = 0; bin < BINS; bin++) {
         const t = bin / (BINS - 1);
         const [r, g, b] = ramp(1 - t);
-        ctx.strokeStyle = `rgba(${r},${g},${b},0.16)`;
+        ctx.strokeStyle = `rgba(${r},${g},${b},0.28)`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         let drew = false;

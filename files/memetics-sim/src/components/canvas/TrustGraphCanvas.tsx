@@ -57,7 +57,7 @@ export default function TrustGraphCanvas() {
       const t = (bin + 0.5) / BINS;
       // Low trust reads cold and faint; high trust reads bright and heavy.
       const alpha = 0.05 + 0.5 * Math.pow(t, 1.6);
-      ctx.strokeStyle = `rgba(${Math.round(110 + 130 * t)},${Math.round(110 + 130 * t)},${Math.round(110 + 130 * t)},${alpha.toFixed(3)})`;
+      ctx.strokeStyle = `rgba(${Math.round(65 + 45 * t)},${Math.round(110 + 75 * t)},255,${alpha.toFixed(3)})`;
       ctx.lineWidth = 0.3 + 2.2 * Math.pow(t, 2);
       ctx.beginPath();
       for (const e of list) {

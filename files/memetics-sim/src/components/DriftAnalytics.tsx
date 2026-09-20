@@ -1,7 +1,7 @@
 import { useSimStore } from '../store/useSimStore';
 import { TRAITS } from '../core/data/loadDataset';
 import { dot } from '../core/math/vector';
-import { rampCss } from './palette';
+import { rampCss, TRAIT_COLORS } from './palette';
 
 export default function DriftAnalytics() {
   const engine = useSimStore(s => s.engine);
@@ -40,15 +40,15 @@ export default function DriftAnalytics() {
       <p className="mt-1 text-slate">{(engine.holders.get(meme.id)?.size ?? 0) > 0 ? 'Currently circulating' : 'Extinct / unheld'} · {meme.adoptionCount} lifetime adoptions</p>
       <p className="mt-3 text-slate">Original tweet · {meme.rootId}</p>
       <p className="mt-1 leading-relaxed">{root?.text}</p>
-      <p className="mt-3 text-cyan">Generation {meme.generation} · root drift {meme.driftDistance.toFixed(3)}</p>
+      <p className="mt-3" style={{ color: TRAIT_COLORS.absurdity }}>Generation {meme.generation} · root drift {meme.driftDistance.toFixed(3)}</p>
       <p className="mt-2 text-slate">Current text: {meme.text}</p>
       <p className="mt-2 text-slate">Text is retained from the source; semantic mutations do not generate new prose.</p>
       <svg viewBox="0 0 220 185" className="mx-auto w-full max-w-[280px]" role="img" aria-label="Trait alignment radar: center minus one, middle zero, edge plus one">
         {[0, 0.5, 1].map(v => <polygon key={v} points={radar([v * 2 - 1, v * 2 - 1, v * 2 - 1, v * 2 - 1])} fill="none" stroke="#555555" />)}
-        <polygon points={radar(alignment)} fill="#ffffff22" stroke="#f3f3ef" />
-        {TRAITS.map((t, i) => <text key={t} x={[110, 183, 110, 36][i]} y={[15, 94, 174, 94][i]} textAnchor="middle" fill="#b0b0b0" fontSize="9">{t}</text>)}
+        <polygon points={radar(alignment)} fill="#68b7ff22" stroke="#68b7ff" />
+        {TRAITS.map((t, i) => <text key={t} x={[110, 183, 110, 36][i]} y={[15, 94, 174, 94][i]} textAnchor="middle" fill={TRAIT_COLORS[t]} fontSize="9">{t}</text>)}
       </svg>
-      <div className="grid grid-cols-2 gap-2 text-slate">{TRAITS.map((t, i) => <span key={t}>{t}: {alignment[i]?.toFixed(3)}</span>)}</div>
+      <div className="grid grid-cols-2 gap-2 text-slate">{TRAITS.map((t, i) => <span key={t} style={{ color: TRAIT_COLORS[t] }}>{t}: {alignment[i]?.toFixed(3)}</span>)}</div>
       {selection && strongest && <>
         <p className="mt-4 leading-relaxed">Candidate #{selection.winner + 1} won with the highest fitness ({selection.fitness[selection.winner].toFixed(3)}) among five proposals. Largest weighted alignment change: {strongest} ({selection.deltas[strongest] >= 0 ? '+' : ''}{selection.deltas[strongest].toFixed(3)}).</p>
         <div className="mt-2 text-slate">{selection.fitness.map((f, i) => <span key={i} className="mr-3">#{i + 1}: {f.toFixed(3)}</span>)}</div>

@@ -53,10 +53,10 @@ export default function App() {
         <div id="parameters" className="panel-anchor" />
         <ResizablePanel id="controls" title="Parameters" number="01.2" width="calc(22% - 11px)" height={570}><ControlPanel /></ResizablePanel>
         <ResizablePanel id="cosmos" title="Semantic observatory" number="01.3" width="calc(50% - 11px)" height={570}>
-          <div className="observatory-toolbar"><div className="flex flex-wrap gap-2">{(['cosmos', 'semantic', 'trust'] as const).map(view => <button key={view} className={mode === view ? 'chip chip-on' : 'chip'} onClick={() => useSimStore.getState().setMode(view)}>{view === 'cosmos' ? 'Meme Cosmos' : view === 'semantic' ? 'Agent space' : 'Trust network'}</button>)}</div><Legend /></div>
+          <div className="observatory-toolbar"><div className="flex flex-wrap gap-2">{(['cosmos', 'semantic', 'trust'] as const).map(view => <button key={view} className={mode === view ? 'chip chip-on' : 'chip'} onClick={() => useSimStore.getState().setMode(view)}>{view === 'cosmos' ? 'Meme Cosmos' : view === 'semantic' ? 'Agent space' : 'Trust network'}</button>)}</div><Legend agents={mode !== 'cosmos'} /></div>
           <div className="observatory-canvas">
             {mode === 'cosmos' ? <MemeCosmos /> : mode === 'semantic' ? <SemanticCanvas /> : <TrustGraphCanvas />}
-            <p className="canvas-caption">{mode === 'cosmos' ? 'Originals, descendants & the space between. Select a point to trace its lineage.' : mode === 'semantic' ? 'Worldviews in motion. Select an agent to inspect.' : 'Relationships become pathways. Select an agent to inspect.'}</p>
+            <p className="canvas-caption">{mode === 'cosmos' ? 'Originals, descendants & the space between. Select a point to trace its lineage.' : mode === 'semantic' ? 'Worldviews in motion. Select an agent to inspect.' : 'Blue edges: trust. Colored pulses: shared memes. Select an agent to inspect.'}</p>
           </div>
         </ResizablePanel>
         <ResizablePanel id="drift" title="Drift & lineage inspector" number="01.4" width="calc(28% - 10px)" height={570}><DriftAnalytics /></ResizablePanel>
@@ -70,17 +70,17 @@ export default function App() {
   );
 }
 
-function Legend() {
+function Legend({ agents = false }: { agents?: boolean }) {
   return (
     <span className="flex items-center gap-2">
-      <span>rational</span>
+      <span>{agents ? 'high rigor' : 'rational'}</span>
       <span
         className="h-1.5 w-24 rounded-full"
         style={{
           background: `linear-gradient(90deg, ${rampCss(0)}, ${rampCss(0.55)}, ${rampCss(1)})`,
         }}
       />
-      <span>irrational</span>
+      <span>{agents ? 'low rigor' : 'irrational'}</span>
     </span>
   );
 }

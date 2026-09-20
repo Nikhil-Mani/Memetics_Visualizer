@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useSimStore } from '../../store/useSimStore';
 import { TRAITS } from '../../core/data/loadDataset';
 import { useCanvas } from './useCanvas';
-import { rampCss } from '../palette';
+import { rampCss, TRAIT_COLORS } from '../palette';
 
 export default function MemeCosmos() {
   const [zoom, setZoom] = useState(1);
@@ -33,14 +33,14 @@ export default function MemeCosmos() {
       const parent = meme.parentId && engine.getMeme(meme.parentId);
       if (!parent) continue;
       const [x, y] = project(meme.vector), [px, py] = project(parent.vector);
-      ctx.strokeStyle = rampCss(meme.rationality, meme.id === selectedMeme ? 0.95 : 0.18);
+      ctx.strokeStyle = rampCss(meme.rationality, meme.id === selectedMeme ? 0.95 : 0.3);
       ctx.beginPath(); ctx.moveTo(px, py); ctx.quadraticCurveTo((x + px) / 2 + (y - py) * 0.15, (y + py) / 2, x, y); ctx.stroke();
     }
     points.current = [];
     for (const meme of visible) {
       const [x, y] = project(meme.vector), root = meme.generation === 0;
       const radius = meme.id === selectedMeme ? 6 : root ? 4 : 2;
-      ctx.fillStyle = root ? (meme.rationality < 0.5 ? '#f3f3ef' : '#808080') : rampCss(meme.rationality);
+      ctx.fillStyle = rampCss(meme.rationality);
       ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = root ? 9 : 0;
       ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
       if (meme.id === selectedMeme) { ctx.strokeStyle = '#fff'; ctx.stroke(); }
@@ -48,8 +48,8 @@ export default function MemeCosmos() {
     }
     if (engine.data) for (const trait of TRAITS) {
       const [x, y] = project(engine.data.anchors[trait]);
-      ctx.strokeStyle = '#d0d0d0'; ctx.strokeRect(x - 4, y - 4, 8, 8);
-      ctx.fillStyle = '#d0d0d0'; ctx.font = '11px sans-serif'; ctx.fillText(trait, x + 7, y - 5);
+      ctx.strokeStyle = TRAIT_COLORS[trait]; ctx.strokeRect(x - 4, y - 4, 8, 8);
+      ctx.fillStyle = TRAIT_COLORS[trait]; ctx.font = '11px sans-serif'; ctx.fillText(trait, x + 7, y - 5);
     }
     ctx.fillStyle = '#999999'; ctx.font = '11px sans-serif';
     ctx.fillText(`Fixed root PCA · ${((engine.cosmosProjector.explained[0] + engine.cosmosProjector.explained[1]) * 100).toFixed(1)}% variance · ${visible.length} nodes`, 16, height - 14);
