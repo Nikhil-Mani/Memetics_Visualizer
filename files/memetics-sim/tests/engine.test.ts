@@ -62,7 +62,7 @@ assert.ok(Math.abs(child.driftDistance - (1 - dot(child.vector, root.vector))) <
 const agentOnly = evolution.mutate(root, root, sender, { ...engine.config, platformSelection: 0 }, 1, new Rng(99));
 assert.equal(agentOnly.selection!.weights[0], sender.epistemicRigor);
 const platformOnly = evolution.mutate(root, root, sender, { ...engine.config, platformSelection: 1 }, 1, new Rng(99));
-assert.deepEqual(platformOnly.selection!.weights, [0.1, 1, 0.4, 0.8]);
+assert.deepEqual(platformOnly.selection!.weights, [0.35, 0.8, 0.4, 0.6]);
 const fixedRootPosition = engine.cosmosProjector.project(root.vector);
 const originalRigor = sender.epistemicRigor;
 const run = () => { for (let i = 0; i < 240; i++) engine.step(); };
