@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import { Readable } from 'node:stream';
+import { readFileSync } from 'node:fs';
+import { createInterpreter } from '../server/interpret';
+import { parseNpy } from '../src/core/data/loadDataset';
+const bytes = readFileSync('public/tweet_embeddings.npy');
+const vectors = parseNpy(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+const invoke = async (handler, body, method = 'POST') => {
+  const req = Readable.from([Buffer.from(JSON.stringify(body))]); req.method = method; req.headers = {};
+  let status = 0, result;
+  await handler(req, { writeHead(code) { status = code; }, end(value) { result = JSON.parse(value); } });
+  return { status, result };
+};
+assert.equal((await invoke(createInterpreter({}), {})).status, 503);
+let calls = 0;
+const handler = createInterpreter({ baseUrl: 'http://fixture/v1', model: 'mock-qwen', apiKey: 'test-only' }, async (url, options) => {
+  calls++;
+  assert.equal(url, 'http://fixture/v1/chat/completions');
+  const request = JSON.parse(options.body);
+  const evidence = JSON.parse(request.messages[1].content);
+  assert.equal(evidence.neighbors[0].id, 'root_1');
+  assert.ok(evidence.neighbors[0].similarity > 0.999);
+  assert.ok(Math.abs(evidence.driftDistance) < 1e-12);
+  assert.equal(request.model, 'mock-qwen');
+  assert.equal(evidence.vector, undefined);
+  return Response.json({ choices: [{ message: { content: 'Fixture interpretation, not decoded text.' } }] });
+});
+assert.equal((await invoke(handler, { vector: [1], rootId: 'root_1' })).status, 400);
+assert.equal((await invoke(handler, { vector: Array(256).fill(0), rootId: 'root_1' })).status, 400);
+assert.equal((await invoke(handler, { vector: Array.from(vectors[0]), rootId: 'unknown' })).status, 400);
+const success = await invoke(handler, { vector: Array.from(vectors[0]), rootId: 'root_1' });
+assert.equal(success.status, 200); assert.equal(calls, 1);
+assert.equal(success.result.model, 'mock-qwen');
+const failure = createInterpreter({ baseUrl: 'http://fixture/v1', model: 'mock' }, async () => new Response('secret diagnostic', { status: 401 }));
+const failed = await invoke(failure, { vector: Array.from(vectors[0]), rootId: 'root_1' });
+assert.equal(failed.status, 502); assert.ok(!JSON.stringify(failed).includes('secret diagnostic'));
+console.log('Passed: interpretation backend validation, grounded retrieval, mock model response, sanitized upstream errors, missing configuration.');

@@ -4,14 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        void: '#070A0F',
-        panel: '#0C1118',
-        hair: '#1B2530',
-        slate: '#6F8494',
-        mist: '#DCE5EC',
-        cyan: '#3FE0D0',
-        amber: '#F2A03D',
-        flare: '#FF4A8A',
+        void: '#080808',
+        panel: '#0c0c0c',
+        hair: '#292929',
+        slate: '#999999',
+        mist: '#f3f3ef',
+        cyan: '#f3f3ef',
+        amber: '#bcbcbc',
+        flare: '#999999',
       },
       fontFamily: {
         sans: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],

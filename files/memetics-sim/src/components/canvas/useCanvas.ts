@@ -56,14 +56,14 @@ export function useCanvas(draw: (frame: Frame) => void) {
       const dt = Math.min(now - last, 100);
       last = now;
 
-      const { running, ticksPerFrame, engine, publishFrame } = useSimStore.getState();
+      const { running, ticksPerFrame, advanceTick, publishFrame } = useSimStore.getState();
       const interval = 1000 / (BASE_TICK_HZ * ticksPerFrame);
 
       if (running) {
         accumulator += dt;
         let steps = 0;
-        while (accumulator >= interval && steps < MAX_STEPS_PER_FRAME) {
-          engine.step();
+        while (accumulator >= interval && steps < MAX_STEPS_PER_FRAME && useSimStore.getState().running) {
+          advanceTick();
           accumulator -= interval;
           steps++;
         }

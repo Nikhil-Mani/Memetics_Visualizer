@@ -1,7 +1,8 @@
 import { useSimStore } from '../store/useSimStore';
 import Sparkline from './Sparkline';
 import { num, pct, rampCss, rigorCss } from './palette';
-import { AXIS_LABELS } from '../core/math/vector';
+import { dot } from '../core/math/vector';
+import { TRAITS } from '../core/data/loadDataset';
 
 export default function AgentInspector() {
   const index = useSimStore((s) => s.selectedAgent);
@@ -10,7 +11,7 @@ export default function AgentInspector() {
 
   if (index == null || !engine.agents[index]) {
     return (
-      <div className="flex h-full flex-col justify-center gap-2 px-6 text-sm text-slate">
+      <div className="flex flex-col justify-center gap-2 px-6 py-8 text-sm text-slate">
         <p className="text-mist">No agent selected.</p>
         <p className="leading-relaxed">
           Click any point on the canvas to open its mind: how its rigor and susceptibility have
@@ -30,7 +31,7 @@ export default function AgentInspector() {
   const confSeries = history.map((h) => h.confidence);
 
   return (
-    <div className="flex h-full flex-col overflow-y-auto">
+    <div className="flex flex-col">
       <header className="sticky top-0 z-10 flex items-baseline justify-between gap-3 border-b border-hair bg-panel px-5 py-3">
         <div>
           <h2 className="text-base text-mist">Agent #{agent.index}</h2>
@@ -54,7 +55,7 @@ export default function AgentInspector() {
             series={susSeries}
             color={rampCss(agent.emotionalSusceptibility)}
           />
-          <Drift label="Bounded confidence τ" value={agent.boundedConfidence} series={confSeries} color="#8FA6FF" />
+          <Drift label="Bounded confidence τ" value={agent.boundedConfidence} series={confSeries} color="#d0d0d0" />
         </div>
         <p className="mt-3 text-xs text-slate">
           Learning rate α {num(agent.learningRate)} — worldview shift per accepted meme.
@@ -64,18 +65,19 @@ export default function AgentInspector() {
       <section className="border-b border-hair px-5 py-4">
         <h3 className="mb-3 text-sm text-mist">Worldview</h3>
         <div className="flex flex-col gap-1.5">
-          {AXIS_LABELS.map((axis, i) => {
-            const v = agent.worldview[i];
+          {TRAITS.map((axis) => {
+            const anchor = useSimStore.getState().engine.data?.anchors[axis];
+            const v = anchor ? dot(agent.worldview, anchor) : 0;
             return (
-              <div key={axis.short} className="flex items-center gap-3 text-xs">
-                <span className="w-20 shrink-0 text-slate">{axis.short}</span>
+              <div key={axis} className="flex items-center gap-3 text-xs">
+                <span className="w-20 shrink-0 text-slate">{axis}</span>
                 <span className="relative h-1.5 flex-1 rounded-full bg-hair">
                   <span
                     className="absolute top-0 h-1.5 rounded-full"
                     style={{
                       left: v >= 0 ? '50%' : `${50 + v * 50}%`,
                       width: `${Math.abs(v) * 50}%`,
-                      background: v >= 0 ? '#3FE0D0' : '#FF4A8A',
+                      background: v >= 0 ? '#f3f3ef' : '#999999',
                     }}
                   />
                 </span>
@@ -88,8 +90,7 @@ export default function AgentInspector() {
           })}
         </div>
         <p className="mt-2 text-[11px] leading-snug text-slate/80">
-          Positive is {AXIS_LABELS[0].pos.toLowerCase()} and its counterparts; negative is{' '}
-          {AXIS_LABELS[0].neg.toLowerCase()}.
+          Cosine alignment with externally encoded semantic anchors (−1 to +1).
         </p>
       </section>
 
@@ -114,7 +115,7 @@ export default function AgentInspector() {
               className="border-l-2 pl-3 font-mono text-[11px] leading-relaxed text-slate"
               style={{
                 borderColor: rampCss(entry.irrationality, entry.kind === 'adopt' ? 0.9 : 0.35),
-                color: entry.kind === 'adopt' ? '#C9D6E0' : undefined,
+                color: entry.kind === 'adopt' ? '#f0f0f0' : undefined,
               }}
             >
               {entry.text}

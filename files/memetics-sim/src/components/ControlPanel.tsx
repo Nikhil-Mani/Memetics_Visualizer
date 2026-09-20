@@ -18,6 +18,11 @@ const TRANSMISSION: SliderSpec[] = [
   { key: 'mutationProbability', label: 'Mutation chance', min: 0, max: 0.6, step: 0.02, hint: 'a re-share rewrites the idea' },
 ];
 
+const SELECTION: SliderSpec[] = [
+  { key: 'platformSelection', label: 'Platform weight λ', min: 0, max: 1, step: 0.05, hint: '0 = transmitting agent biases; 1 = platform only' },
+  ...(['Rigor', 'Outrage', 'Absurdity', 'Simplicity'] as const).map(t => ({ key: `platform${t}` as keyof SimConfig, label: `${t} incentive`, min: -1, max: 1, step: 0.05, hint: 'platform fitness weight for this semantic alignment' })),
+];
+
 const COGNITION: SliderSpec[] = [
   { key: 'driftDelta', label: 'Drift per adoption', min: 0, max: 0.08, step: 0.002, hint: 'δ_drift — how fast rigor trains or erodes', digits: 3 },
   { key: 'conformityRate', label: 'Conformity rate', min: 0, max: 0.02, step: 0.001, hint: 'λ — pull toward the neighbourhood mean', digits: 3 },
@@ -106,7 +111,8 @@ export default function ControlPanel() {
           />
         </label>
 
-        <div className="mt-3 flex gap-2">
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button onClick={() => store.setMode('cosmos')} className={mode === 'cosmos' ? 'chip chip-on' : 'chip'}>Meme Cosmos</button>
           <button
             onClick={() => store.setMode('semantic')}
             className={mode === 'semantic' ? 'chip chip-on' : 'chip'}
@@ -120,10 +126,10 @@ export default function ControlPanel() {
             Trust graph
           </button>
         </div>
-        {mode === 'semantic' && (
+        {mode !== 'trust' && (
           <label className="mt-3 flex items-center gap-2 text-xs text-slate">
             <input type="checkbox" checked={showTrails} onChange={() => store.toggleTrails()} />
-            Show migration trails
+            Show trails
           </label>
         )}
       </section>
@@ -131,7 +137,7 @@ export default function ControlPanel() {
       <section>
         <h2 className="mb-2 text-sm text-mist">Inject an idea</h2>
         <p className="mb-2 text-xs leading-snug text-slate">
-          Drops a new meme into five random agents so you can watch it travel.
+          Reintroduces a matching dataset tweet into a community of five agents.
         </p>
         <div className="flex gap-2">
           {[0.05, 0.5, 0.95].map((irr) => (
@@ -148,6 +154,7 @@ export default function ControlPanel() {
       </section>
 
       <Sliders title="Transmission" specs={TRANSMISSION} config={config} />
+      <Sliders title="Darwinian selection" specs={SELECTION} config={config} />
       <Sliders title="Cognition and trust" specs={COGNITION} config={config} />
       <Sliders title="Content supply" specs={SUPPLY} config={config} />
       <Sliders title="Population structure" specs={STRUCTURE} config={config} note="Changing these rebuilds the run." />

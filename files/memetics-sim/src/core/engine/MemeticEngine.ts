@@ -3,19 +3,14 @@ import { PcaProjector } from '../math/pca';
 import { bimodalityCoefficient, History, mean, stddev } from '../math/stats';
 import {
   clamp,
-  D,
   dot,
   jitterUnit,
   lerpNormalized,
-  randomUnit,
   sigmoid,
   type Vec,
 } from '../math/vector';
 import {
-  createMeme,
-  mutateMeme,
   reproductionNumber,
-  resetMemeCounter,
   type Meme,
 } from '../types/Meme';
 import {
@@ -29,7 +24,8 @@ import {
   type Agent,
 } from '../types/Agent';
 import { buildSmallWorld, clusteringCoefficient } from './Network';
-import { drawSeed, drawSpectrum } from './memeLibrary';
+import type { Dataset } from '../data/loadDataset';
+import { createRoots, EvolutionEngine } from './EvolutionEngine';
 import { DEFAULT_CONFIG, type SimConfig } from './config';
 
 export interface BroadcastPulse {
@@ -50,6 +46,12 @@ export interface Metrics {
   meanTrust: number;
   adoptionsPerTick: number;
   liveMemes: number;
+  generatedMutations: number;
+  totalMemesCreated: number;
+  mutatedShare: number;
+  liveMutations: number;
+  liveMutatedShare: number;
+  maxGeneration: number;
   clustering: number;
 }
 
@@ -57,12 +59,19 @@ const PCA_INTERVAL = 6;
 const PENETRATION_SAMPLE = 5;
 
 export class MemeticEngine {
+  data: Dataset | null = null;
+  evolution: EvolutionEngine | null = null;
+  roots: Meme[] = [];
+  cosmosProjector = new PcaProjector();
+  cosmosExtent: [number, number] = [1, 1];
   config: SimConfig;
   rng: Rng;
   tick = 0;
+  runVersion = 0;
 
   agents: Agent[] = [];
   memes = new Map<string, Meme>();
+  archivedMemes = new Map<string, Meme>();
   holders = new Map<string, Set<number>>();
   pulses: BroadcastPulse[] = [];
 
@@ -74,6 +83,8 @@ export class MemeticEngine {
   bimodalityHistory = new History();
   susceptibilityHistory = new History();
 
+  private generatedMutations = 0;
+  private maxGeneration = 0;
   private adoptionsThisTick = 0;
   private adoptionsEma = 0;
   private rhoScratch: Float64Array = new Float64Array(0);
@@ -84,20 +95,39 @@ export class MemeticEngine {
   constructor(config: SimConfig = DEFAULT_CONFIG) {
     this.config = { ...config };
     this.rng = new Rng(config.seed);
-    this.reset(this.config);
+  }
+
+  initialize(data: Dataset): void {
+    this.data = data;
+    this.reset();
   }
 
   // ---------------------------------------------------------------- lifecycle
 
   reset(config: SimConfig = this.config): void {
     this.config = { ...config };
+    if (!this.data) return;
+    this.evolution = new EvolutionEngine(this.data.anchors);
+    this.roots = createRoots(this.data);
+    this.cosmosProjector = new PcaProjector();
+    this.cosmosProjector.fit(this.roots.map(m => m.vector));
+    const calibration = [...this.roots.map(m => m.vector), ...Object.values(this.data.anchors), new Float64Array(256)];
+    const projected = calibration.map(v => this.cosmosProjector.project(v));
+    this.cosmosExtent = [
+      Math.max(0.15, ...projected.map(([x]) => Math.abs(x))) + 0.15,
+      Math.max(0.15, ...projected.map(([, y]) => Math.abs(y))) + 0.15,
+    ];
     this.rng = new Rng(config.seed);
     this.tick = 0;
+    this.runVersion++;
     this.memes.clear();
+    this.archivedMemes.clear();
     this.holders.clear();
     this.pulses = [];
     this.adoptionsEma = 0;
-    resetMemeCounter();
+    this.generatedMutations = 0;
+    this.maxGeneration = 0;
+    this.referencePenetration = 0.02;
     this.rationalityHistory = new History();
     this.climateHistory = new History();
     this.bimodalityHistory = new History();
@@ -111,7 +141,7 @@ export class MemeticEngine {
     // Community anchors: agents near each other on the ring start ideologically
     // close, which is what lets low rewiring produce genuine echo chambers.
     const communityCount = Math.max(3, Math.round(n / 60));
-    const anchors: Vec[] = Array.from({ length: communityCount }, () => randomUnit(this.rng, D));
+    const anchors: Vec[] = Array.from({ length: communityCount }, () => this.roots[this.rng.int(this.roots.length)].vector);
 
     this.agents = [];
     for (let i = 0; i < n; i++) {
@@ -119,7 +149,7 @@ export class MemeticEngine {
       const agent: Agent = {
         id: `a${i}`,
         index: i,
-        worldview: jitterUnit(anchor, 0.45, this.rng),
+        worldview: jitterUnit(anchor, 0.45 / Math.sqrt(anchor.length), this.rng),
         epistemicRigor: clamp(
           this.rng.normal(config.initialRigor, config.initialRigorSpread),
           0.05,
@@ -158,30 +188,12 @@ export class MemeticEngine {
     this.rhoView = new Float64Array(n);
     this.pc1View = new Float64Array(n);
 
-    // Seed the population with content spanning the whole spectrum.
-    // Half the starting content spans the whole spectrum (so the semantic map
-    // has structure from tick 0) and half sits near the feed's centre of
-    // gravity, because a run's media environment is consistent with itself —
-    // a conspiratorial feed does not arrive into a neutral back catalogue.
-    const seedCount = Math.max(8, Math.round(n / 22));
-    const seeds = [
-      ...drawSpectrum(Math.ceil(seedCount / 2), this.rng),
-      ...Array.from({ length: Math.floor(seedCount / 2) }, () =>
-        drawSeed(config.injectionIrrationality, this.rng, 0.16),
-      ),
-    ];
-    for (const seed of seeds) {
-      const origin = this.agents[this.rng.int(n)];
-      seed.vector = lerpNormalized(seed.vector, origin.worldview, 0.4);
-      const meme = createMeme(seed, 0, this.rng);
+    // Original embeddings never bend toward a synthetic worldview. Seed each
+    // tweet into its most semantically compatible community instead.
+    for (const meme of this.roots) {
       this.registerMeme(meme);
-      this.grantMeme(origin, meme, 0.5 + this.rng.next() * 0.3);
-      const carriers = this.rng.int(3);
-      for (let c = 0; c < carriers; c++) {
-        const pool = origin.neighbors;
-        const target = pool.length ? this.agents[pool[this.rng.int(pool.length)]] : origin;
-        this.grantMeme(target, meme, 0.5 + this.rng.next() * 0.3);
-      }
+      const carriers = [...this.agents].sort((a, b) => dot(b.worldview, meme.vector) - dot(a.worldview, meme.vector));
+      for (const carrier of carriers.slice(0, 2)) this.grantMeme(carrier, meme, 0.7);
     }
 
     this.recomputeProjection(true);
@@ -191,6 +203,10 @@ export class MemeticEngine {
   // ------------------------------------------------------------------- memes
 
   private registerMeme(meme: Meme): void {
+    if (!this.memes.has(meme.id) && meme.generation > 0) {
+      this.generatedMutations++;
+      this.maxGeneration = Math.max(this.maxGeneration, meme.generation);
+    }
     this.memes.set(meme.id, meme);
     this.holders.set(meme.id, new Set());
   }
@@ -237,6 +253,7 @@ export class MemeticEngine {
   // -------------------------------------------------------------------- tick
 
   step(): void {
+    if (!this.data) return;
     this.tick++;
     this.adoptionsThisTick = 0;
     for (const a of this.agents) a.adoptionsThisTick = 0;
@@ -259,38 +276,16 @@ export class MemeticEngine {
     this.agePulses();
   }
 
-  /**
-   * Spawn a meme and hand it to a seed cluster.
-   *
-   * Content is oriented partly toward the worldview of whoever first voices it,
-   * not dropped in at an abstract library coordinate. Ideas are articulated from
-   * inside a community, and a meme aimed at a corner of the semantic space that
-   * nobody occupies is simply filtered out by the bounded-confidence gate before
-   * it can ever be judged on its merits — no cascade can start from there.
-   * `groundedness` is how far the wording bends toward the speaker.
-   */
-  private spawnMeme(
-    targetIrrationality: number,
-    carrierCount: number,
-    conviction: number,
-    groundedness: number,
-    spread: number,
-  ): Meme {
+  /** Reintroduce actual dataset roots, preserving their vectors and identities. */
+  private spawnMeme(targetIrrationality: number, carrierCount: number, conviction: number): Meme {
+    if (!this.roots.length) throw new Error('Dataset is not loaded');
+    const pool = this.roots.filter(m => Math.abs(m.rationality - targetIrrationality) < 0.2);
+    const meme = this.rng.pick(pool.length ? pool : this.roots);
     const origin = this.agents[this.rng.int(this.agents.length)];
-    const seed = drawSeed(targetIrrationality, this.rng, spread);
-    seed.vector = lerpNormalized(seed.vector, origin.worldview, groundedness);
-    const meme = createMeme(seed, this.tick, this.rng);
-    this.registerMeme(meme);
-
-    // The seed cluster is the speaker plus a few of their neighbours, so the
-    // idea starts where it would actually start: inside one social pocket.
     this.grantMeme(origin, meme, conviction);
+    meme.alive = true;
     for (let c = 1; c < carrierCount; c++) {
-      const pool = origin.neighbors;
-      const target =
-        pool.length > 0 && this.rng.next() < 0.75
-          ? this.agents[pool[this.rng.int(pool.length)]]
-          : this.agents[this.rng.int(this.agents.length)];
+      const target = origin.neighbors.length ? this.agents[this.rng.pick(origin.neighbors)] : origin;
       this.grantMeme(target, meme, conviction);
     }
     return meme;
@@ -301,14 +296,14 @@ export class MemeticEngine {
     let budget = this.config.injectionRate;
     while (budget > 0) {
       if (budget < 1 && this.rng.next() > budget) break;
-      this.spawnMeme(this.config.injectionIrrationality, 1 + this.rng.int(2), 0.55, 0.45, 0.14);
+      this.spawnMeme(this.config.injectionIrrationality, 1 + this.rng.int(2), 0.55);
       budget -= 1;
     }
   }
 
   /** Inject a specific meme at the user's request (control panel). */
   injectMeme(irrationality: number, carriers = 5): Meme {
-    return this.spawnMeme(irrationality, carriers, 0.75, 0.5, 0.04);
+    return this.spawnMeme(irrationality, carriers, 0.75);
   }
 
   private broadcastPhase(): void {
@@ -323,7 +318,7 @@ export class MemeticEngine {
       // Mutation on re-broadcast.
       let payload = entry.meme;
       if (this.rng.next() < mutationProbability) {
-        payload = mutateMeme(entry.meme, this.tick, this.rng);
+        payload = this.evolution!.mutate(entry.meme, this.memes.get(entry.meme.rootId)!, sender, this.config, this.tick, this.rng);
         this.registerMeme(payload);
       }
       payload.broadcastCount++;
@@ -624,20 +619,20 @@ export class MemeticEngine {
    * caught on are kept far longer so the phylogeny tree stays intact.
    */
   private sweepDeadMemes(): void {
+    // Keep roots, live ancestry, and pending retrospective receipts intact.
+    const keep = new Set(this.roots.map(m => m.id));
+    for (const a of this.agents) {
+      for (const id of a.inventory.keys()) keep.add(id);
+      for (const receipt of a.pendingMemeReceipts) keep.add(receipt.memeId);
+    }
+    for (const m of this.memes.values()) if (this.tick - m.originTick <= 160) keep.add(m.id);
+    for (const id of keep) {
+      let parent = this.memes.get(id)?.parentId;
+      while (parent && !keep.has(parent)) { keep.add(parent); parent = this.memes.get(parent)?.parentId; }
+    }
     for (const [id, meme] of this.memes) {
-      const held = this.holders.get(id)?.size ?? 0;
-      if (held > 0) {
-        meme.alive = true;
-        continue;
-      }
-      meme.alive = false;
-      const age = this.tick - meme.originTick;
-      const stillborn = meme.adoptionCount < 2 && age > 24;
-      const forgotten = meme.adoptionCount < 12 && age > 160;
-      if (stillborn || forgotten) {
-        this.memes.delete(id);
-        this.holders.delete(id);
-      }
+      meme.alive = (this.holders.get(id)?.size ?? 0) > 0;
+      if (!keep.has(id)) { this.archivedMemes.set(id, meme); this.memes.delete(id); this.holders.delete(id); }
     }
   }
 
@@ -654,7 +649,7 @@ export class MemeticEngine {
 
   recomputeProjection(force = false): void {
     const vectors = this.agents.map((a) => a.worldview);
-    this.projector.fit(vectors, force ? 64 : 24);
+    if (force) this.projector.fit(vectors, 48);
     for (const agent of this.agents) {
       const [x, y] = this.projector.project(agent.worldview);
       agent.x = x;
@@ -721,8 +716,12 @@ export class MemeticEngine {
   private lastRigorSpread = 0;
 
   metrics(): Metrics {
-    let live = 0;
-    for (const id of this.memes.keys()) if ((this.holders.get(id)?.size ?? 0) > 0) live++;
+    let live = 0, liveMutations = 0;
+    for (const [id, meme] of this.memes) if ((this.holders.get(id)?.size ?? 0) > 0) {
+      live++;
+      if (meme.generation > 0) liveMutations++;
+    }
+    const totalMemesCreated = this.roots.length + this.generatedMutations;
     return {
       tick: this.tick,
       rationalityIndex: this.rationalityHistory.last,
@@ -733,6 +732,12 @@ export class MemeticEngine {
       meanTrust: this.lastTrust,
       adoptionsPerTick: this.adoptionsEma,
       liveMemes: live,
+      generatedMutations: this.generatedMutations,
+      totalMemesCreated,
+      mutatedShare: totalMemesCreated ? this.generatedMutations / totalMemesCreated : 0,
+      liveMutations,
+      liveMutatedShare: live ? liveMutations / live : 0,
+      maxGeneration: this.maxGeneration,
       clustering: this.clustering,
     };
   }
@@ -756,11 +761,21 @@ export class MemeticEngine {
   // ------------------------------------------------------------- reporting
 
   /** Ranked meme table: R0, irrationality, generational depth, reach. */
-  rankedMemes(limit = 14) {
+  getMeme(id: string): Meme | undefined {
+    return this.memes.get(id) ?? this.archivedMemes.get(id);
+  }
+
+  rankedMemes(limit = 14, view: 'circulating' | 'mutations' | 'roots' | 'extinct' = 'circulating', query = '') {
     const rows = [];
-    for (const meme of this.memes.values()) {
+    const needle = query.trim().toLowerCase();
+    const candidates = view === 'extinct' ? [...this.memes.values(), ...this.archivedMemes.values()] : this.memes.values();
+    for (const meme of candidates) {
+      if (needle && !`${meme.id} ${meme.rootId} ${meme.text}`.toLowerCase().includes(needle)) continue;
       const held = this.holders.get(meme.id)?.size ?? 0;
-      if (meme.exposureCount === 0 && held === 0) continue;
+      if (view === 'circulating' && held === 0) continue;
+      if (view === 'extinct' && held > 0) continue;
+      if (view === 'mutations' && meme.generation === 0) continue;
+      if (view === 'roots' && meme.generation !== 0) continue;
       rows.push({
         meme,
         penetration: held / this.agents.length,
@@ -768,14 +783,15 @@ export class MemeticEngine {
         held,
       });
     }
-    rows.sort((a, b) => b.r0 * (0.3 + b.penetration) - a.r0 * (0.3 + a.penetration));
+    if (view === 'mutations' || view === 'extinct') rows.sort((a, b) => b.meme.originTick - a.meme.originTick || b.meme.generation - a.meme.generation);
+    else rows.sort((a, b) => b.r0 * (0.3 + b.penetration) - a.r0 * (0.3 + a.penetration));
     return rows.slice(0, limit);
   }
 
   /** Plain-language account of why a given meme spread the way it did. */
   explainMeme(memeId: string): string {
-    const meme = this.memes.get(memeId);
-    if (!meme) return 'This meme is no longer in circulation.';
+    const meme = this.getMeme(memeId);
+    if (!meme) return 'This meme is not in the current run.';
     const held = this.holders.get(memeId)?.size ?? 0;
     const pen = held / this.agents.length;
     const r0 = reproductionNumber(meme, this.config.fanout);
@@ -808,6 +824,7 @@ export class MemeticEngine {
     }
 
     const parts: string[] = [];
+    if (held === 0) parts.push(`Extinct / unheld: no agents currently carry this variant. It recorded ${meme.adoptionCount} adoptions and ${meme.exposureCount} exposures. Its lineage and selection record remain available until the run resets.`);
     if (meme.irrationality > 0.6 && meme.virality > 0.6) {
       parts.push(
         `High-virality exploit. At irrationality ${meme.irrationality.toFixed(2)} it carries low parsing cost ` +
@@ -846,26 +863,24 @@ export class MemeticEngine {
 
   /** Lineage tree rooted at a meme's root ancestor. */
   lineage(memeId: string): { meme: Meme; depth: number }[] {
-    const meme = this.memes.get(memeId);
+    const meme = this.getMeme(memeId);
     if (!meme) return [];
-    const family = [...this.memes.values()].filter((m) => m.rootId === meme.rootId);
+    const family = [...this.memes.values(), ...this.archivedMemes.values()].filter((m) => m.rootId === meme.rootId);
     const byParent = new Map<string | null, Meme[]>();
     for (const m of family) {
       const key = m.parentId;
       if (!byParent.has(key)) byParent.set(key, []);
       byParent.get(key)!.push(m);
     }
-    const root = family.find((m) => m.parentId === null || !this.memes.has(m.parentId));
+    const root = this.getMeme(meme.rootId);
     const out: { meme: Meme; depth: number }[] = [];
-    const walk = (node: Meme, depth: number) => {
-      out.push({ meme: node, depth });
-      if (depth > 8 || out.length > 60) return;
-      const kids = (byParent.get(node.id) ?? []).sort(
-        (a, b) => b.adoptionCount - a.adoptionCount,
-      );
-      for (const kid of kids) walk(kid, depth + 1);
-    };
-    if (root) walk(root, 0);
+    const stack = root ? [{ meme: root, depth: 0 }] : [];
+    while (stack.length) {
+      const entry = stack.pop()!;
+      out.push(entry);
+      const kids = (byParent.get(entry.meme.id) ?? []).sort((a, b) => b.adoptionCount - a.adoptionCount);
+      for (let i = kids.length - 1; i >= 0; i--) stack.push({ meme: kids[i], depth: entry.depth + 1 });
+    }
     return out;
   }
 

@@ -1,14 +1,21 @@
+import { loadDataset } from '../core/data/loadDataset';
 import { create } from 'zustand';
 import { MemeticEngine, type Metrics } from '../core/engine/MemeticEngine';
 import { applyPreset, DEFAULT_CONFIG, PRESETS, type SimConfig } from '../core/engine/config';
 
-export type CanvasMode = 'semantic' | 'trust';
+export type CanvasMode = 'cosmos' | 'semantic' | 'trust';
 
 interface SimState {
+  status: 'idle' | 'loading' | 'ready' | 'error';
+  error: string | null;
+  initialize: () => Promise<void>;
   engine: MemeticEngine;
   config: SimConfig;
   presetId: string;
   running: boolean;
+  stopAtTick: number | null;
+  runForTicks: (ticks: number) => void;
+  advanceTick: () => void;
   ticksPerFrame: number;
   mode: CanvasMode;
   selectedAgent: number | null;
@@ -39,22 +46,54 @@ const engine = new MemeticEngine(DEFAULT_CONFIG);
 
 export const useSimStore = create<SimState>((set, get) => ({
   engine,
+  status: 'idle',
+  error: null,
+  initialize: async () => {
+    if (get().status === 'loading' || get().status === 'ready') return;
+    set({ status: 'loading', error: null, running: false });
+    try {
+      const data = await loadDataset();
+      get().engine.initialize(data);
+      get().engine.step();
+      set({ status: 'ready', running: true });
+      get().publishFrame();
+    } catch (error) {
+      set({ status: 'error', error: error instanceof Error ? error.message : String(error), running: false });
+    }
+  },
   config: { ...DEFAULT_CONFIG },
   presetId: 'baseline',
-  running: true,
+  running: false,
+  stopAtTick: null,
+  runForTicks: (ticks) => {
+    if (get().status !== 'ready' || !Number.isInteger(ticks) || ticks < 1 || ticks > 10000) return;
+    set({ stopAtTick: get().engine.tick + ticks, running: true });
+  },
+  advanceTick: () => {
+    const state = get();
+    state.engine.step();
+    if (state.stopAtTick !== null && state.engine.tick >= state.stopAtTick) {
+      set({ running: false, stopAtTick: null });
+      get().publishFrame();
+    }
+  },
   ticksPerFrame: 1,
-  mode: 'semantic',
+  mode: 'cosmos',
   selectedAgent: null,
   selectedMeme: null,
   metrics: engine.metrics(),
   showTrails: true,
   revision: 0,
 
-  play: () => set({ running: true }),
-  pause: () => set({ running: false }),
-  toggle: () => set((s) => ({ running: !s.running })),
+  play: () => set({ running: get().status === 'ready' }),
+  pause: () => { set({ running: false }); get().publishFrame(); },
+  toggle: () => {
+    if (get().running) get().pause(); else get().play();
+  },
   stepOnce: () => {
-    get().engine.step();
+    if (get().status !== 'ready') return;
+    set({ running: false });
+    get().advanceTick();
     get().publishFrame();
   },
   setSpeed: (n) => set({ ticksPerFrame: n }),
@@ -77,7 +116,7 @@ export const useSimStore = create<SimState>((set, get) => ({
     } else {
       engineRef.config = config;
     }
-    set({ config, presetId: 'custom' });
+    set({ stopAtTick: null, config, presetId: 'custom', ...(structural ? { selectedAgent: null, selectedMeme: null } : {}) });
     get().publishFrame();
   },
 
@@ -86,24 +125,25 @@ export const useSimStore = create<SimState>((set, get) => ({
     if (!preset) return;
     const config = applyPreset({ ...DEFAULT_CONFIG, seed: get().config.seed }, preset);
     get().engine.reset(config);
-    set({ config, presetId: id, selectedAgent: null, selectedMeme: null });
+    set({ stopAtTick: null, config, presetId: id, selectedAgent: null, selectedMeme: null });
     get().publishFrame();
   },
 
   restart: () => {
     get().engine.reset(get().config);
-    set({ selectedAgent: null, selectedMeme: null });
+    set({ stopAtTick: null, selectedAgent: null, selectedMeme: null });
     get().publishFrame();
   },
 
   reseed: () => {
     const config = { ...get().config, seed: Math.floor(Math.random() * 2 ** 31) };
     get().engine.reset(config);
-    set({ config, selectedAgent: null, selectedMeme: null });
+    set({ stopAtTick: null, config, selectedAgent: null, selectedMeme: null });
     get().publishFrame();
   },
 
   injectMeme: (irrationality) => {
+    if (get().status !== 'ready') return;
     const meme = get().engine.injectMeme(irrationality, 5);
     set({ selectedMeme: meme.id });
     get().publishFrame();

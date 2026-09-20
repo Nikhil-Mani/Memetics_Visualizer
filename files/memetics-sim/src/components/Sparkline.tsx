@@ -40,7 +40,7 @@ export default function Sparkline({
           x2={width}
           y1={y(baseline)}
           y2={y(baseline)}
-          stroke="#1B2530"
+          stroke="#242424"
           strokeDasharray="3 4"
           strokeWidth="1"
           vectorEffect="non-scaling-stroke"

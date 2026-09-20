@@ -1,12 +1,7 @@
-/**
- * One continuous ramp carries meaning everywhere in the interface:
- * cyan = rational / high rigor, amber = the middle, hot pink = hyper-irrational.
- */
+/** Monochrome luminance: bright = rational, mid-gray = irrational. */
 const STOPS: [number, [number, number, number]][] = [
-  [0.0, [63, 224, 208]], // cyan
-  [0.45, [120, 214, 160]],
-  [0.62, [242, 160, 61]], // amber
-  [1.0, [255, 74, 138]], // hot pink
+  [0, [245, 245, 240]],
+  [1, [125, 125, 125]],
 ];
 
 export function ramp(t: number): [number, number, number] {
@@ -32,7 +27,7 @@ export function rampCss(t: number, alpha = 1): string {
   return alpha >= 1 ? `rgb(${r},${g},${b})` : `rgba(${r},${g},${b},${alpha})`;
 }
 
-/** Agents are coloured by rigor, so a high-rigor agent reads as cyan. */
+/** Agents are coloured by rigor, so a high-rigor agent reads as bright white. */
 export const rigorCss = (rho: number, alpha = 1): string => rampCss(1 - rho, alpha);
 
 export const pct = (x: number, digits = 0): string => `${(x * 100).toFixed(digits)}%`;

@@ -1,16 +1,7 @@
 import type { Rng } from './random';
 
 /** Latent semantic dimension. */
-export const D = 6;
-
-export const AXIS_LABELS: { pos: string; neg: string; short: string }[] = [
-  { short: 'Rigor', pos: 'Empirical verification', neg: 'Affective heuristics' },
-  { short: 'Autonomy', pos: 'Individual autonomy', neg: 'Tribal conformity' },
-  { short: 'Trust', pos: 'Institutional trust', neg: 'Paranoid threat sensitivity' },
-  { short: 'Optimism', pos: 'Technological optimism', neg: 'Catastrophic doomerism' },
-  { short: 'Humanism', pos: 'Universal humanism', neg: 'In-group favoritism' },
-  { short: 'Nuance', pos: 'Analytical nuance', neg: 'Sloganized simplicity' },
-];
+export const D = 256;
 
 export type Vec = Float64Array;
 
@@ -73,3 +64,12 @@ export const clamp = (x: number, lo: number, hi: number): number =>
   x < lo ? lo : x > hi ? hi : x;
 
 export const sigmoid = (z: number): number => 1 / (1 + Math.exp(-z));
+
+export function cosineSimilarity(a: Vec, b: Vec): number {
+  const length = norm(a) * norm(b);
+  return length > 1e-12 ? clamp(dot(a, b) / length, -1, 1) : 0;
+}
+export function add(a: Vec, b: Vec): Vec {
+  if (a.length !== b.length) throw new Error("Vector dimension mismatch");
+  return Float64Array.from(a, (x, i) => x + b[i]);
+}

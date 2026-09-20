@@ -4,7 +4,7 @@ import { useSimStore } from '../../store/useSimStore';
 import { ramp } from '../palette';
 import { trustIn } from '../../core/types/Agent';
 
-const BG = '#070A0F';
+const BG = '#080808';
 const BINS = 18;
 
 interface Layout {
@@ -57,7 +57,7 @@ export default function TrustGraphCanvas() {
       const t = (bin + 0.5) / BINS;
       // Low trust reads cold and faint; high trust reads bright and heavy.
       const alpha = 0.05 + 0.5 * Math.pow(t, 1.6);
-      ctx.strokeStyle = `rgba(${Math.round(90 + 150 * t)},${Math.round(150 + 80 * t)},${Math.round(180 + 40 * t)},${alpha.toFixed(3)})`;
+      ctx.strokeStyle = `rgba(${Math.round(110 + 130 * t)},${Math.round(110 + 130 * t)},${Math.round(110 + 130 * t)},${alpha.toFixed(3)})`;
       ctx.lineWidth = 0.3 + 2.2 * Math.pow(t, 2);
       ctx.beginPath();
       for (const e of list) {
@@ -108,8 +108,8 @@ export default function TrustGraphCanvas() {
     }
 
     for (const [idx, colour, rad] of [
-      [hover.current, 'rgba(220,229,236,0.5)', 7],
-      [selectedAgent, '#DCE5EC', 9],
+      [hover.current, 'rgba(240,240,240,0.5)', 7],
+      [selectedAgent, '#f3f3ef', 9],
     ] as [number | null, string, number][]) {
       if (idx == null || !agents[idx]) continue;
       ctx.strokeStyle = colour;
@@ -119,7 +119,7 @@ export default function TrustGraphCanvas() {
       ctx.stroke();
     }
 
-    ctx.fillStyle = 'rgba(111,132,148,0.85)';
+    ctx.fillStyle = 'rgba(155,155,155,0.85)';
     ctx.font = '11px "IBM Plex Mono", monospace';
     ctx.fillText(
       `clustering ${engine.clustering.toFixed(2)} · mean trust ${engine.metrics().meanTrust.toFixed(2)}`,

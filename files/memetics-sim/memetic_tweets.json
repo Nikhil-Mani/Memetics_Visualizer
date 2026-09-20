@@ -1,0 +1,1602 @@
+[
+  {
+    "id": 1,
+    "text": "The jobs number looks strong until you notice the household and establishment surveys have diverged again, for the fourth month running. I'd wait for the benchmark revision before calling this a trend. Revisions have skewed negative all year, which tells you more than any single headline print does.",
+    "rationality": 0.171,
+    "virality": 0.273,
+    "cognitiveLoad": 0.619,
+    "mutationVariance": 0.0422
+  },
+  {
+    "id": 2,
+    "text": "Actually read the preprint. Effect size is d=0.18, and the interval crosses zero in two of the four preregistered outcomes. The university press release calls it a breakthrough. It isn't one. It's a small, noisy signal that justifies a replication attempt and very little else.",
+    "rationality": 0.076,
+    "virality": 0.42,
+    "cognitiveLoad": 0.772,
+    "mutationVariance": 0.0088
+  },
+  {
+    "id": 3,
+    "text": "Housing costs are mostly a supply problem, but not only a supply problem. Zoning reform helps on a five to ten year horizon. Nothing meaningful helps in eighteen months, and anyone promising otherwise is selling you something. Thread on what permitting data from six metros actually shows. 🧵",
+    "rationality": 0.236,
+    "virality": 0.645,
+    "cognitiveLoad": 0.807,
+    "mutationVariance": 0.0674
+  },
+  {
+    "id": 4,
+    "text": "I've changed my mind on congestion pricing after going through the London and Stockholm evaluations. My prior was that it would be sharply regressive. The distributional picture turns out to be more mixed than I expected, largely because of who actually drives into central business districts at peak hours.",
+    "rationality": 0.131,
+    "virality": 0.143,
+    "cognitiveLoad": 0.998,
+    "mutationVariance": 0.03
+  },
+  {
+    "id": 5,
+    "text": "Reminder: statistically significant means the result is unlikely under the null. It does not mean the effect is large, durable, or relevant to any decision you'll ever make. With 400,000 participants you can reliably detect effects far too small to change anyone's behavior.",
+    "rationality": 0.0,
+    "virality": 0.407,
+    "cognitiveLoad": 0.795,
+    "mutationVariance": 0.0289
+  },
+  {
+    "id": 6,
+    "text": "Every observational nutrition finding is downstream of the same problem: people who eat more vegetables differ from people who don't in about nine hundred other ways. Researchers adjust for what they can measure. The confounders they can't measure are the entire ballgame here.",
+    "rationality": 0.03,
+    "virality": 0.167,
+    "cognitiveLoad": 0.542,
+    "mutationVariance": 0.0439
+  },
+  {
+    "id": 7,
+    "text": "Lifecycle emissions for an electric vehicle depend heavily on grid mix and how long you keep the car. In a coal-heavy region with a three-year ownership window the advantage narrows a lot. In a hydro-heavy region it's overwhelming. Regional averages hide most of what matters.",
+    "rationality": 0.053,
+    "virality": 0.282,
+    "cognitiveLoad": 1.0,
+    "mutationVariance": 0.0
+  },
+  {
+    "id": 8,
+    "text": "Careful with the crime numbers this quarter. The department changed its incident classification scheme in March, so the year-over-year comparison isn't comparing the same thing. Whether the underlying trend moved at all is genuinely unclear until someone reconciles the two coding schemes.",
+    "rationality": 0.246,
+    "virality": 0.338,
+    "cognitiveLoad": 0.697,
+    "mutationVariance": 0.0591
+  },
+  {
+    "id": 9,
+    "text": "Benchmark contamination is the quiet crisis in model evaluation. If test items appeared anywhere in the training corpus, the reported score measures memorization, not capability. Most papers don't run decontamination checks, and the ones that do rarely publish the overlap statistics.",
+    "rationality": 0.133,
+    "virality": 0.289,
+    "cognitiveLoad": 0.564,
+    "mutationVariance": 0.0575
+  },
+  {
+    "id": 10,
+    "text": "Over a thirty-year horizon, low-cost index funds beat the large majority of actively managed funds after fees. This is about as close to settled as finance gets. It is also completely compatible with some individual managers being genuinely skilled. Both things are true.",
+    "rationality": 0.204,
+    "virality": 0.232,
+    "cognitiveLoad": 0.626,
+    "mutationVariance": 0.0345
+  },
+  {
+    "id": 11,
+    "text": "Self-reported sleep duration correlates only moderately with actigraphy, and the gap isn't random — it's larger among people with insomnia symptoms. So a lot of the sleep-and-health literature is measuring beliefs about sleep alongside sleep itself, in unknown proportion.",
+    "rationality": 0.525,
+    "virality": 0.669,
+    "cognitiveLoad": 0.338,
+    "mutationVariance": 0.1718
+  },
+  {
+    "id": 12,
+    "text": "That poll is within the margin of error, which means the race is a coin flip and not a lead. Also worth checking the house effect: this pollster has leaned two points in one direction all cycle, which is within normal variation but worth pricing in.",
+    "rationality": 0.324,
+    "virality": 0.459,
+    "cognitiveLoad": 0.709,
+    "mutationVariance": 0.042
+  },
+  {
+    "id": 13,
+    "text": "The replication rate for social priming studies came in around a third. That's not a scandal about individual researchers, it's a structural result of small samples, flexible analysis, and journals that only publish positive findings. Fix the incentives and the rate moves.",
+    "rationality": 0.053,
+    "virality": 0.139,
+    "cognitiveLoad": 0.629,
+    "mutationVariance": 0.0215
+  },
+  {
+    "id": 14,
+    "text": "The trial hit its surrogate endpoint, not a clinical one. Tumor shrinkage is not the same as survival, and the correlation between the two varies enormously by cancer type. Sometimes the surrogate predicts well. Often it doesn't. Read which one was measured.",
+    "rationality": 0.323,
+    "virality": 0.305,
+    "cognitiveLoad": 0.55,
+    "mutationVariance": 0.0968
+  },
+  {
+    "id": 15,
+    "text": "Grid reliability with high renewable penetration is a storage and transmission problem, not an impossibility. The costs are real and the engineering is hard. Both the people saying it's trivial and the people saying it's physically impossible are overstating their case considerably.",
+    "rationality": 0.13,
+    "virality": 0.098,
+    "cognitiveLoad": 0.815,
+    "mutationVariance": 0.065
+  },
+  {
+    "id": 16,
+    "text": "Early-childhood test score gains often fade by third grade, but the same programs show effects on high school completion and earnings decades later. That's a weird pattern and nobody fully explains it. It does suggest test scores are a poor proxy for whatever is actually happening.",
+    "rationality": 0.052,
+    "virality": 0.22,
+    "cognitiveLoad": 0.56,
+    "mutationVariance": 0.0506
+  },
+  {
+    "id": 17,
+    "text": "The minimum wage literature genuinely disagrees with itself, and that's fine. Different identification strategies, different labor markets, different magnitudes of increase. Anyone who tells you the evidence is unanimous in either direction has read one paper and stopped.",
+    "rationality": 0.144,
+    "virality": 0.0,
+    "cognitiveLoad": 0.535,
+    "mutationVariance": 0.0
+  },
+  {
+    "id": 18,
+    "text": "Antibiotic resistance is a rate problem, not a threshold problem. Every unnecessary prescription nudges selection pressure a little. No individual prescription is the catastrophe, which is exactly why stewardship is hard to enforce at the level of a single patient visit.",
+    "rationality": 0.096,
+    "virality": 0.166,
+    "cognitiveLoad": 0.769,
+    "mutationVariance": 0.1191
+  },
+  {
+    "id": 19,
+    "text": "Disengagement-per-mile is a bad autonomy metric. It's self-reported, definitions vary between companies, and it rewards operating in easy conditions. Comparing two firms on this number tells you mostly about their testing routes and internal reporting culture.",
+    "rationality": 0.096,
+    "virality": 0.182,
+    "cognitiveLoad": 0.757,
+    "mutationVariance": 0.0277
+  },
+  {
+    "id": 20,
+    "text": "Streaming platforms release viewership numbers selectively and define a view differently from each other and from themselves last year. Any ranking assembled from those disclosures is closer to a press strategy artifact than an audience measurement.",
+    "rationality": 0.127,
+    "virality": 0.068,
+    "cognitiveLoad": 0.501,
+    "mutationVariance": 0.0697
+  },
+  {
+    "id": 21,
+    "text": "The protein RDA is a floor for preventing deficiency, not an optimum for building muscle. But the curve flattens sooner than fitness marketing implies, and above roughly 1.6 grams per kilogram the marginal returns in the trial data get very hard to detect.",
+    "rationality": 0.298,
+    "virality": 0.414,
+    "cognitiveLoad": 0.592,
+    "mutationVariance": 0.116
+  },
+  {
+    "id": 22,
+    "text": "Attribution science can say a heat wave became several times more likely in a warmed climate. It generally can't say the event was caused by warming in the way people mean when they say caused. That distinction survives the press cycle about half the time.",
+    "rationality": 0.267,
+    "virality": 0.522,
+    "cognitiveLoad": 0.955,
+    "mutationVariance": 0.0375
+  },
+  {
+    "id": 23,
+    "text": "Went through the city budget line by line. The item everyone is angry about is 0.4 percent of general fund spending. The items nobody is discussing are pensions and debt service, which together are roughly a third. Outrage allocation is not tracking dollar allocation.",
+    "rationality": 0.584,
+    "virality": 0.596,
+    "cognitiveLoad": 0.468,
+    "mutationVariance": 0.1084
+  },
+  {
+    "id": 24,
+    "text": "Microbiome research is genuinely exciting and also about six years away from most of the claims being made for it. Correlations between gut composition and basically every condition exist. Causal direction is established for very few, and personalized interventions have a thin evidence base.",
+    "rationality": 0.0,
+    "virality": 0.158,
+    "cognitiveLoad": 0.915,
+    "mutationVariance": 0.022
+  },
+  {
+    "id": 25,
+    "text": "If a protocol offers twenty percent yield, the first question is where the yield comes from. Sometimes it's real fee revenue. More often it's token emissions, which is a transfer from future holders to current ones dressed up as a return. Ask which.",
+    "rationality": 0.64,
+    "virality": 0.458,
+    "cognitiveLoad": 0.528,
+    "mutationVariance": 0.1367
+  },
+  {
+    "id": 26,
+    "text": "Two air quality monitors four miles apart in the same city can report meaningfully different readings, and siting explains much of the gap — height, proximity to roadways, local terrain. Neighborhood-level claims from a single sensor deserve more skepticism than they get.",
+    "rationality": 0.0,
+    "virality": 0.052,
+    "cognitiveLoad": 0.755,
+    "mutationVariance": 0.0399
+  },
+  {
+    "id": 27,
+    "text": "Survey response rates have fallen below ten percent for most phone polling. Weighting fixes what you can observe and model. It cannot fix a systematic difference between people who answer unknown numbers and people who don't, if that difference correlates with the thing you're measuring.",
+    "rationality": 0.0,
+    "virality": 0.218,
+    "cognitiveLoad": 0.819,
+    "mutationVariance": 0.0333
+  },
+  {
+    "id": 28,
+    "text": "GDP growth and median household income can move in opposite directions for years at a stretch, and often have. Neither statistic is lying. They're measuring different things, and which one you cite usually reveals what you already believed before you looked.",
+    "rationality": 0.076,
+    "virality": 0.295,
+    "cognitiveLoad": 0.721,
+    "mutationVariance": 0.0323
+  },
+  {
+    "id": 29,
+    "text": "Total volume of high-level nuclear waste produced in this country since the 1950s would fit on a single football field stacked a few meters deep. That's a real fact and it still doesn't resolve the siting problem, which is political and intergenerational rather than volumetric.",
+    "rationality": 0.074,
+    "virality": 0.067,
+    "cognitiveLoad": 0.803,
+    "mutationVariance": 0.0254
+  },
+  {
+    "id": 30,
+    "text": "Radiocarbon dates come with error bars that most popular coverage drops entirely. A date reported as 3,200 years old might carry a range of a couple of centuries at two sigma. Whole narratives about which civilization influenced which get built inside that uncertainty.",
+    "rationality": 0.445,
+    "virality": 0.449,
+    "cognitiveLoad": 0.558,
+    "mutationVariance": 0.1724
+  },
+  {
+    "id": 31,
+    "text": "Designing a hallucination eval is harder than it looks. You need questions with verifiable answers, distractors that are plausible, and a scoring rubric that distinguishes a confident wrong answer from an appropriate refusal. Most published evals conflate the last two.",
+    "rationality": 0.078,
+    "virality": 0.294,
+    "cognitiveLoad": 0.814,
+    "mutationVariance": 0.0225
+  },
+  {
+    "id": 32,
+    "text": "Before-and-after studies of bike infrastructure have an obvious selection problem: cities build lanes on streets where crashes already happened, so regression to the mean inflates the apparent benefit. The better studies use comparison corridors, and they still find a benefit, just a smaller one.",
+    "rationality": 0.0,
+    "virality": 0.051,
+    "cognitiveLoad": 0.355,
+    "mutationVariance": 0.077
+  },
+  {
+    "id": 33,
+    "text": "Observational data made vitamin D look protective for nearly everything. The randomized trials have been mostly null outside of correcting genuine deficiency. The likeliest explanation is reverse causation: being sick and indoors lowers your levels rather than the other way around.",
+    "rationality": 0.285,
+    "virality": 0.313,
+    "cognitiveLoad": 0.599,
+    "mutationVariance": 0.0598
+  },
+  {
+    "id": 34,
+    "text": "The per-stream payout figure everyone quotes isn't a rate that exists anywhere. Royalties are a pool divided pro rata, so an artist's payout depends on total platform streams that month. Which means the number changes even if your listeners don't.",
+    "rationality": 0.241,
+    "virality": 0.276,
+    "cognitiveLoad": 0.635,
+    "mutationVariance": 0.0323
+  },
+  {
+    "id": 35,
+    "text": "Acres burned is a poor standalone measure of fire severity. Fuel load, canopy mortality, and soil effects vary enormously across the same acreage. A large low-intensity burn can be ecologically beneficial. The headline number treats both cases identically.",
+    "rationality": 0.11,
+    "virality": 0.409,
+    "cognitiveLoad": 0.489,
+    "mutationVariance": 0.0201
+  },
+  {
+    "id": 36,
+    "text": "A risk score can be well calibrated across groups and still produce different false positive rates across those groups, if base rates differ. This isn't a bug someone forgot to fix, it's a mathematical impossibility result. Which fairness criterion you pick is a value judgment.",
+    "rationality": 0.303,
+    "virality": 0.346,
+    "cognitiveLoad": 0.469,
+    "mutationVariance": 0.0886
+  },
+  {
+    "id": 37,
+    "text": "Most remote work productivity studies measure output in the one or two domains that are easy to count — tickets closed, calls handled, lines committed. Mentorship, tacit knowledge transfer, and the slow decay of institutional memory don't show up for several years.",
+    "rationality": 0.0,
+    "virality": 0.076,
+    "cognitiveLoad": 0.748,
+    "mutationVariance": 0.0741
+  },
+  {
+    "id": 38,
+    "text": "The inflation number you feel and the inflation number that gets published differ mainly in basket composition. If your spending is concentrated in rent, childcare, and insurance, your personal rate has been well above headline for a while. The index isn't wrong, it's just not about you.",
+    "rationality": 0.254,
+    "virality": 0.179,
+    "cognitiveLoad": 0.713,
+    "mutationVariance": 0.0376
+  },
+  {
+    "id": 39,
+    "text": "The meta-analysis on adolescent social media and wellbeing lands on an association roughly the size of the association with wearing glasses. That's the honest finding. It's compatible with real harm to a vulnerable subgroup being averaged away, which is the part worth studying next.",
+    "rationality": 0.294,
+    "virality": 0.262,
+    "cognitiveLoad": 0.683,
+    "mutationVariance": 0.0825
+  },
+  {
+    "id": 40,
+    "text": "Readmission penalties reduced readmissions and also increased observation-status stays that don't count as admissions. Some of the improvement is real, some is reclassification, and the literature has spent a decade arguing about the ratio without converging.",
+    "rationality": 0.238,
+    "virality": 0.31,
+    "cognitiveLoad": 0.728,
+    "mutationVariance": 0.0727
+  },
+  {
+    "id": 41,
+    "text": "Doping test sensitivity has improved faster than public understanding of what a negative result means. A clean test means nothing above the detection threshold for the substances screened, at the time sampled. That's a much narrower claim than innocence.",
+    "rationality": 0.083,
+    "virality": 0.351,
+    "cognitiveLoad": 0.551,
+    "mutationVariance": 0.0313
+  },
+  {
+    "id": 42,
+    "text": "If you test enough splits — home/away, day/night, count, handedness, month — something clears the significance bar by chance. Sports analytics runs on enormous search spaces and mostly doesn't correct for them. Treat any surprising split as a hypothesis, not a finding.",
+    "rationality": 0.273,
+    "virality": 0.337,
+    "cognitiveLoad": 0.331,
+    "mutationVariance": 0.0463
+  },
+  {
+    "id": 43,
+    "text": "Desalination cost per acre-foot has fallen substantially and is still several times the cost of conservation or reuse in most basins. It's a reasonable marginal supply for coastal cities with no cheaper option. It is not a general solution to water scarcity, especially inland.",
+    "rationality": 0.326,
+    "virality": 0.618,
+    "cognitiveLoad": 0.789,
+    "mutationVariance": 0.0612
+  },
+  {
+    "id": 44,
+    "text": "The lead exposure cohort studies are among the more convincing natural experiments in public health, because the phase-out timing varied across regions in ways unrelated to local outcomes. Even so, the effect size attributed to lead in the strongest papers remains contested.",
+    "rationality": 0.402,
+    "virality": 0.202,
+    "cognitiveLoad": 0.439,
+    "mutationVariance": 0.1404
+  },
+  {
+    "id": 45,
+    "text": "A risk-limiting audit is a statistical procedure with a stated confidence level, not a full recount. It's good practice and it's designed to catch outcome-changing error, not every individual discrepancy. People on both sides routinely describe the results as proving more than they can.",
+    "rationality": 0.01,
+    "virality": 0.356,
+    "cognitiveLoad": 0.706,
+    "mutationVariance": 0.0368
+  },
+  {
+    "id": 46,
+    "text": "Semiconductor lead times are a useful leading indicator and a terrible coincident one. Orders get double-booked during shortages and cancelled in gluts, so the series overshoots in both directions. The amplitude of the swing is largely an artifact of ordering behavior.",
+    "rationality": 0.156,
+    "virality": 0.21,
+    "cognitiveLoad": 0.748,
+    "mutationVariance": 0.0445
+  },
+  {
+    "id": 47,
+    "text": "Some reefs recover from bleaching within a decade and some don't, and the variance between sites is larger than the variance between years. Local water quality and herbivore populations explain a good deal of it. Averaging across sites throws away the actionable information.",
+    "rationality": 0.402,
+    "virality": 0.428,
+    "cognitiveLoad": 0.708,
+    "mutationVariance": 0.1393
+  },
+  {
+    "id": 48,
+    "text": "Sodium restriction trials show clear benefit at very high intake and get genuinely murky in the middle range. There's a plausible J-curve, the evidence for it is not strong, and the guideline number reflects a policy judgment under uncertainty rather than a demonstrated optimum.",
+    "rationality": 0.352,
+    "virality": 0.301,
+    "cognitiveLoad": 0.209,
+    "mutationVariance": 0.0899
+  },
+  {
+    "id": 49,
+    "text": "Venture returns are power law distributed, which means median fund performance tells you almost nothing and the mean is driven by a handful of outcomes. Reported IRRs before exits are marks, not money. Both facts are widely known and routinely ignored in fundraising decks.",
+    "rationality": 0.453,
+    "virality": 0.395,
+    "cognitiveLoad": 0.75,
+    "mutationVariance": 0.0503
+  },
+  {
+    "id": 50,
+    "text": "Historical literacy rates are mostly reconstructed from signature counts on legal documents, which measures something narrower than literacy and oversamples people who had reason to sign documents. The long-run trend is probably right. The levels in any given decade are soft.",
+    "rationality": 0.052,
+    "virality": 0.046,
+    "cognitiveLoad": 0.544,
+    "mutationVariance": 0.032
+  },
+  {
+    "id": 51,
+    "text": "Exoplanet detection methods are biased toward large planets in short orbits, because that's what transit and radial velocity find most easily. So the observed population is not the actual population, and every claim about how common Earth-like planets are carries a correction step you should ask about.",
+    "rationality": 0.58,
+    "virality": 0.55,
+    "cognitiveLoad": 0.485,
+    "mutationVariance": 0.15
+  },
+  {
+    "id": 52,
+    "text": "Antidepressants beat placebo in trials by a margin that's statistically solid and clinically modest on average. Averages hide responders and non-responders. The honest framing is that they work well for some people, not at all for others, and we can't yet predict which in advance.",
+    "rationality": 0.458,
+    "virality": 0.511,
+    "cognitiveLoad": 0.683,
+    "mutationVariance": 0.157
+  },
+  {
+    "id": 53,
+    "text": "Farebox recovery ratio is a bad primary metric for transit because the point of the system is the economic activity it enables, not its own revenue. Roads aren't held to this standard. That said, low recovery does create a real fiscal fragility worth planning around.",
+    "rationality": 0.32,
+    "virality": 0.399,
+    "cognitiveLoad": 0.776,
+    "mutationVariance": 0.0915
+  },
+  {
+    "id": 54,
+    "text": "Half the A/B tests I see are underpowered to detect the effect size the team is hoping for, which means a null result is uninformative and a positive result is probably inflated. Run the power calculation before the test, not after the result disappoints you.",
+    "rationality": 0.0,
+    "virality": 0.082,
+    "cognitiveLoad": 0.87,
+    "mutationVariance": 0.0546
+  },
+  {
+    "id": 55,
+    "text": "Correlation isn't causation, but a well-designed natural experiment can get you most of the way there. The question to ask isn't whether it's observational, it's whether the assignment mechanism is plausibly as-good-as-random conditional on what's controlled for.",
+    "rationality": 0.224,
+    "virality": 0.301,
+    "cognitiveLoad": 0.672,
+    "mutationVariance": 0.0774
+  },
+  {
+    "id": 56,
+    "text": "The hard question for any carbon offset is additionality: would the tree have stood, or the methane been captured, without the payment? It is very difficult to verify a counterfactual, which is why offset quality varies from genuinely good to essentially fictional.",
+    "rationality": 0.024,
+    "virality": 0.337,
+    "cognitiveLoad": 0.704,
+    "mutationVariance": 0.0263
+  },
+  {
+    "id": 57,
+    "text": "Firearm policy effects vary enormously by state context, baseline enforcement, and which outcome you measure. Studies that pool across all states produce averages that describe nowhere in particular. This is a place where the heterogeneity is the finding, not noise around one.",
+    "rationality": 0.308,
+    "virality": 0.218,
+    "cognitiveLoad": 0.789,
+    "mutationVariance": 0.0948
+  },
+  {
+    "id": 58,
+    "text": "Teacher value-added scores are noisy enough that a teacher's ranking can swing a couple of deciles between years with no change in practice. Useful in aggregate for research. Genuinely poor as an individual high-stakes evaluation instrument, which is mostly how they get used.",
+    "rationality": 0.294,
+    "virality": 0.447,
+    "cognitiveLoad": 0.501,
+    "mutationVariance": 0.0535
+  },
+  {
+    "id": 59,
+    "text": "Reported recycling rates typically count material collected, not material actually reprocessed into new goods. For most plastic resins the gap between those two numbers is enormous. This isn't a reason to stop sorting; it's a reason to be skeptical of the headline percentage.",
+    "rationality": 0.452,
+    "virality": 0.424,
+    "cognitiveLoad": 0.534,
+    "mutationVariance": 0.1391
+  },
+  {
+    "id": 60,
+    "text": "Forecasts of AI-driven job displacement span an order of magnitude across credible studies, because they differ on task decomposition, adoption speed, and whether new roles are counted. The honest summary is wide uncertainty, which nobody gets invited on television to say.",
+    "rationality": 0.0,
+    "virality": 0.195,
+    "cognitiveLoad": 0.594,
+    "mutationVariance": 0.0494
+  },
+  {
+    "id": 61,
+    "text": "The point-in-time count undercounts homelessness, especially people doubled up or in vehicles, and the size of the undercount varies by jurisdiction and weather on the night of the count. Year-over-year changes in the count partly measure changes in counting effort.",
+    "rationality": 0.391,
+    "virality": 0.513,
+    "cognitiveLoad": 0.597,
+    "mutationVariance": 0.1561
+  },
+  {
+    "id": 62,
+    "text": "The house edge on parlays is far larger than on single bets, and the product is designed so the correlated-looking legs feel more likely than the math implies. You can enjoy betting and still know that the expected value is negative by construction.",
+    "rationality": 0.323,
+    "virality": 0.42,
+    "cognitiveLoad": 0.51,
+    "mutationVariance": 0.0726
+  },
+  {
+    "id": 63,
+    "text": "For a symptom with a one-in-fifty-thousand serious cause, a test with ninety-nine percent specificity still generates far more false positives than true ones. Diagnostic reasoning is mostly base rates, and base rates are the part that intuition handles worst.",
+    "rationality": 0.227,
+    "virality": 0.516,
+    "cognitiveLoad": 0.613,
+    "mutationVariance": 0.0938
+  },
+  {
+    "id": 64,
+    "text": "Peer review catches some errors and misses many. It was never designed as a fraud detector and it's bad at being one. Treating publication as a certification of truth rather than as a weak filter explains a lot of downstream public confusion about science.",
+    "rationality": 0.497,
+    "virality": 0.123,
+    "cognitiveLoad": 0.853,
+    "mutationVariance": 0.2
+  },
+  {
+    "id": 65,
+    "text": "The seed oil argument rests mostly on mechanistic reasoning about omega-6 ratios plus some observational work. The randomized evidence on replacing saturated fat with polyunsaturated fat points the other way. Mechanism is a hypothesis generator, not evidence of outcomes.",
+    "rationality": 0.51,
+    "virality": 0.447,
+    "cognitiveLoad": 0.436,
+    "mutationVariance": 0.1718
+  },
+  {
+    "id": 66,
+    "text": "Endowment spending rules are typically a smoothed percentage of a trailing average, which is why a great market year doesn't produce an immediate budget windfall. Also most of the fund is restricted to specific donor purposes and legally can't be moved to whatever is currently urgent.",
+    "rationality": 0.28,
+    "virality": 0.396,
+    "cognitiveLoad": 0.658,
+    "mutationVariance": 0.083
+  },
+  {
+    "id": 67,
+    "text": "Surveillance for novel influenza is sparse enough that the absence of detected human cases is weak evidence about actual human cases. This cuts in both directions. It's a reason for humility about reassuring statements and about alarming ones alike.",
+    "rationality": 0.223,
+    "virality": 0.384,
+    "cognitiveLoad": 0.598,
+    "mutationVariance": 0.0762
+  },
+  {
+    "id": 68,
+    "text": "Speed test results depend on server selection, time of day, and whether your router or your device is the bottleneck. A single test tells you about one path at one moment. Sustained throughput during peak hours is the number that actually describes your service.",
+    "rationality": 0.287,
+    "virality": 0.141,
+    "cognitiveLoad": 0.763,
+    "mutationVariance": 0.0801
+  },
+  {
+    "id": 69,
+    "text": "Prescribing volume fell substantially while overdose deaths kept climbing, because the mortality driver shifted to illicit supply. Both facts are in the same datasets. Policy arguments that cite one and omit the other are describing a different epidemic than the one happening.",
+    "rationality": 0.577,
+    "virality": 0.376,
+    "cognitiveLoad": 0.562,
+    "mutationVariance": 0.0952
+  },
+  {
+    "id": 70,
+    "text": "Stable isotope analysis of ancient remains gives you broad dietary categories — marine versus terrestrial protein, roughly what kind of plants — not menus. The reconstructions in museum placards are considerably more specific than the underlying chemistry supports.",
+    "rationality": 0.473,
+    "virality": 0.57,
+    "cognitiveLoad": 0.432,
+    "mutationVariance": 0.1743
+  },
+  {
+    "id": 71,
+    "text": "My honest estimate on fault-tolerant quantum computing is wide: plausibly a decade, plausibly considerably longer, with meaningful probability that a materials problem we haven't hit yet stretches it further. Anyone giving you a tight range is forecasting their funding needs.",
+    "rationality": 0.382,
+    "virality": 0.287,
+    "cognitiveLoad": 0.439,
+    "mutationVariance": 0.1458
+  },
+  {
+    "id": 72,
+    "text": "Average wage growth can rise purely because low-wage jobs disappeared from the sample. That's composition effect, not raises. During any period of sharp employment change you want to look at wage growth for continuously employed workers instead of the headline average.",
+    "rationality": 0.412,
+    "virality": 0.504,
+    "cognitiveLoad": 0.574,
+    "mutationVariance": 0.1458
+  },
+  {
+    "id": 73,
+    "text": "Color in restored films is a judgment call, not a recovery of ground truth. Original negatives have faded unevenly, reference prints disagree with each other, and the people who saw the theatrical release are mostly gone. Every restoration is an argument about intent.",
+    "rationality": 0.149,
+    "virality": 0.142,
+    "cognitiveLoad": 0.493,
+    "mutationVariance": 0.0458
+  },
+  {
+    "id": 74,
+    "text": "A model scoring well on long-context retrieval benchmarks often degrades sharply on tasks requiring synthesis across the same context. Finding a needle is not the same as reasoning over the haystack, and the benchmarks that get quoted mostly measure the former.",
+    "rationality": 0.102,
+    "virality": 0.21,
+    "cognitiveLoad": 0.736,
+    "mutationVariance": 0.0389
+  },
+  {
+    "id": 75,
+    "text": "Nameplate capacity for wind means output at the rated wind speed, which is not most hours. Capacity factor is the number that matters, and it varies from the low twenties to over fifty percent depending on siting and turbine class. Comparing nameplate to a gas plant's output is a category error.",
+    "rationality": 0.672,
+    "virality": 0.732,
+    "cognitiveLoad": 0.263,
+    "mutationVariance": 0.1004
+  },
+  {
+    "id": 76,
+    "text": "Nearly every screen time and child outcome association shrinks when you control for household income, parental education, and neighborhood. What remains is small and inconsistent across measurement approaches. The within-family designs are the ones worth reading here.",
+    "rationality": 0.15,
+    "virality": 0.0,
+    "cognitiveLoad": 0.505,
+    "mutationVariance": 0.0307
+  },
+  {
+    "id": 77,
+    "text": "Check the disclosure section before the recommendation section. A guideline panel where most voting members have industry relationships isn't automatically wrong, but it changes how much independent verification a reader should want before adopting the recommendation.",
+    "rationality": 0.143,
+    "virality": 0.304,
+    "cognitiveLoad": 0.623,
+    "mutationVariance": 0.0467
+  },
+  {
+    "id": 78,
+    "text": "Predictive policing creates a feedback loop: you send patrols where you've previously recorded incidents, which generates more recorded incidents there, which the model reads as confirmation. The model can be technically accurate about its own training distribution and still be useless.",
+    "rationality": 0.276,
+    "virality": 0.433,
+    "cognitiveLoad": 0.687,
+    "mutationVariance": 0.0499
+  },
+  {
+    "id": 79,
+    "text": "Cost per QALY is an uncomfortable metric and every alternative is worse. Refusing to price health outcomes doesn't avoid rationing, it just moves the rationing somewhere less visible and less accountable. The arguments worth having are about the threshold and the weights.",
+    "rationality": 0.0,
+    "virality": 0.173,
+    "cognitiveLoad": 0.686,
+    "mutationVariance": 0.0
+  },
+  {
+    "id": 80,
+    "text": "An I-squared above seventy-five means the studies in your meta-analysis are measuring meaningfully different things, and pooling them produces an average of incomparable quantities. The forest plot is more informative than the diamond at the bottom in that situation.",
+    "rationality": 0.331,
+    "virality": 0.282,
+    "cognitiveLoad": 0.594,
+    "mutationVariance": 0.0886
+  },
+  {
+    "id": 81,
+    "text": "Microplastic counts across studies aren't comparable because detection limits differ by an order of magnitude between methods. Some labs count particles down to a micron, some stop at fifty. Rising reported concentrations partly reflect improving instruments.",
+    "rationality": 0.341,
+    "virality": 0.329,
+    "cognitiveLoad": 0.393,
+    "mutationVariance": 0.0805
+  },
+  {
+    "id": 82,
+    "text": "Fertility decline shows up across countries with wildly different housing costs, childcare policies, and religious composition, which is a problem for every single-cause explanation on offer. Whatever is driving it appears to be something that generalizes across those differences.",
+    "rationality": 0.114,
+    "virality": 0.345,
+    "cognitiveLoad": 0.619,
+    "mutationVariance": 0.019
+  },
+  {
+    "id": 83,
+    "text": "Flood insurance pricing was historically based on maps that lagged development and ignored rainfall-driven flooding away from rivers. Updating to catastrophe models produces enormous premium changes that are actuarially defensible and politically impossible. Both of those are true at once.",
+    "rationality": 0.485,
+    "virality": 0.336,
+    "cognitiveLoad": 0.376,
+    "mutationVariance": 0.1499
+  },
+  {
+    "id": 84,
+    "text": "The three-point revolution was straightforward expected value arithmetic that took the league roughly fifteen years to fully act on. The interesting question isn't why it happened, it's why the adjustment lagged the analysis for so long once the math was public.",
+    "rationality": 0.324,
+    "virality": 0.499,
+    "cognitiveLoad": 0.581,
+    "mutationVariance": 0.103
+  },
+  {
+    "id": 85,
+    "text": "Supplements are regulated as food, not drugs, which means no premarket efficacy review and inconsistent verification that the label matches the contents. Third-party testing programs help. The baseline assumption for an unverified product should be that potency varies batch to batch.",
+    "rationality": 0.151,
+    "virality": 0.408,
+    "cognitiveLoad": 0.695,
+    "mutationVariance": 0.0269
+  },
+  {
+    "id": 86,
+    "text": "Urban heat island measurement depends enormously on sensor placement — a monitor over asphalt in full sun and one in a shaded park a block away can differ by several degrees. City-to-city comparisons often compare station networks more than they compare cities.",
+    "rationality": 0.306,
+    "virality": 0.616,
+    "cognitiveLoad": 0.794,
+    "mutationVariance": 0.1285
+  },
+  {
+    "id": 87,
+    "text": "Large parts of the security-critical open source stack are maintained by a handful of unpaid people. This is a known structural risk that gets attention for about two weeks after each major incident and then stops being anyone's budget line.",
+    "rationality": 0.29,
+    "virality": 0.324,
+    "cognitiveLoad": 0.825,
+    "mutationVariance": 0.115
+  },
+  {
+    "id": 88,
+    "text": "CPI and the GDP deflator diverge because they cover different baskets and handle substitution differently. Neither is the true inflation rate, because there isn't one. Pick the index that matches the decision you're making and say which one you picked.",
+    "rationality": 0.169,
+    "virality": 0.14,
+    "cognitiveLoad": 0.388,
+    "mutationVariance": 0.0347
+  },
+  {
+    "id": 89,
+    "text": "Food frequency questionnaires ask people to recall average consumption over a year. Recall is bad, portion estimation is worse, and the errors correlate with body weight and health consciousness. This is the measurement instrument underneath a substantial share of nutrition headlines.",
+    "rationality": 0.701,
+    "virality": 0.65,
+    "cognitiveLoad": 0.373,
+    "mutationVariance": 0.0622
+  },
+  {
+    "id": 90,
+    "text": "The legal standard is whether the prosecution met its burden, not whether the defendant did it. Those come apart regularly, and public commentary collapses them constantly. An acquittal is a statement about evidence sufficiency, which is narrower than most reporting implies.",
+    "rationality": 0.174,
+    "virality": 0.029,
+    "cognitiveLoad": 0.651,
+    "mutationVariance": 0.0668
+  },
+  {
+    "id": 91,
+    "text": "Earthquake early warning gives you seconds to tens of seconds, derived from the gap between P and S wave arrival. That's enough to stop a train or halt surgery. It is not prediction, and the systems get oversold as prediction in nearly every news segment about them.",
+    "rationality": 0.128,
+    "virality": 0.269,
+    "cognitiveLoad": 0.819,
+    "mutationVariance": 0.0
+  },
+  {
+    "id": 92,
+    "text": "Chart methodology has changed repeatedly — streaming ratios, bundle rules, how sales windows are counted. Comparing a number one run from this decade to one from three decades ago is comparing outputs of two different formulas, not two levels of popularity.",
+    "rationality": 0.463,
+    "virality": 0.55,
+    "cognitiveLoad": 0.659,
+    "mutationVariance": 0.1598
+  },
+  {
+    "id": 93,
+    "text": "The teacher shortage is severe in specific subjects and specific regions and doesn't exist in others. National vacancy figures average a rural physics crisis with an urban elementary surplus, producing a number that describes no district's actual staffing situation.",
+    "rationality": 0.131,
+    "virality": 0.42,
+    "cognitiveLoad": 0.486,
+    "mutationVariance": 0.0862
+  },
+  {
+    "id": 94,
+    "text": "Cultivated meat cost curves have fallen steeply from an absurd starting point, which is the easy part of any learning curve. The unresolved questions are bioreactor scale-up, growth media cost, and whether the process economics work outside pilot volumes.",
+    "rationality": 0.498,
+    "virality": 0.583,
+    "cognitiveLoad": 0.393,
+    "mutationVariance": 0.1679
+  },
+  {
+    "id": 95,
+    "text": "Heat wave mortality studies have to account for displacement — some deaths would have occurred within weeks regardless, so excess deaths during the event are partly offset by a deficit afterward. The net figure is smaller than the peak figure and more honest.",
+    "rationality": 0.333,
+    "virality": 0.505,
+    "cognitiveLoad": 0.474,
+    "mutationVariance": 0.1292
+  },
+  {
+    "id": 96,
+    "text": "Surveys of academic economists find near-consensus on some questions — trade gains, carbon pricing, rent control effects — and wide dispersion on others. Public discourse tends to sample from the dispersed set and conclude the field agrees on nothing.",
+    "rationality": 0.432,
+    "virality": 0.378,
+    "cognitiveLoad": 0.575,
+    "mutationVariance": 0.1651
+  },
+  {
+    "id": 97,
+    "text": "Real-world EV battery degradation data from large fleets has come in better than early lab projections, with most packs retaining the large majority of capacity past a hundred thousand miles. Fast-charging frequency and climate explain most of the variance between vehicles.",
+    "rationality": 0.044,
+    "virality": 0.226,
+    "cognitiveLoad": 0.929,
+    "mutationVariance": 0.0458
+  },
+  {
+    "id": 98,
+    "text": "A patent cliff shifts revenue from the originator to generics and lowers prices, which is the system working as designed. The argument worth having is about exclusivity length and evergreening tactics, not about whether generic entry should happen at all.",
+    "rationality": 0.031,
+    "virality": 0.144,
+    "cognitiveLoad": 0.71,
+    "mutationVariance": 0.0528
+  },
+  {
+    "id": 99,
+    "text": "Citizen science data quality is usually fine for presence and terrible for absence, because volunteers don't record nothing. Occupancy models that account for detection probability handle this. Raw counts from observation platforms usually don't, and get cited anyway.",
+    "rationality": 0.466,
+    "virality": 0.57,
+    "cognitiveLoad": 0.511,
+    "mutationVariance": 0.13
+  },
+  {
+    "id": 100,
+    "text": "A useful habit: before sharing something that confirms what you already thought, spend thirty seconds looking for the strongest version of the opposing case. Most of the time it's weaker than you feared. Occasionally it isn't, and those are the valuable occasions.",
+    "rationality": 0.0,
+    "virality": 0.0,
+    "cognitiveLoad": 0.584,
+    "mutationVariance": 0.088
+  },
+  {
+    "id": 101,
+    "text": "THEY ARE NOT EVEN HIDING IT ANYMORE. Three different agencies released the same statement on the same morning with the same phrasing. Coordinated. Scripted. If you still think these people operate independently after watching that you are choosing not to see it. WAKE UP.",
+    "rationality": 0.962,
+    "virality": 0.805,
+    "cognitiveLoad": 0.194,
+    "mutationVariance": 0.0216
+  },
+  {
+    "id": 102,
+    "text": "My aunt cured twelve years of chronic pain in nine days with something that costs four dollars at any grocery store. Her doctor got visibly angry when she told him. Ask yourself why a healer would be ANGRY that someone got better. Ask yourself who profits from her staying sick.",
+    "rationality": 0.78,
+    "virality": 0.906,
+    "cognitiveLoad": 0.246,
+    "mutationVariance": 0.0424
+  },
+  {
+    "id": 103,
+    "text": "Nothing about that building collapse adds up. Nothing. The angle, the timing, the way the coverage vanished from every front page within forty hours. I'm not saying I know what happened. I'm saying the story we were handed is not the story, and everyone can feel it.",
+    "rationality": 0.623,
+    "virality": 0.517,
+    "cognitiveLoad": 0.394,
+    "mutationVariance": 0.1288
+  },
+  {
+    "id": 104,
+    "text": "They test everything on us first and apologize eighty years later when nobody responsible is still breathing. Every single time. Every one.",
+    "rationality": 0.895,
+    "virality": 0.763,
+    "cognitiveLoad": 0.073,
+    "mutationVariance": 0.0498
+  },
+  {
+    "id": 105,
+    "text": "Your grandmother knew more about healing than the entire pharmaceutical industry and they spent a century convincing you she was a superstitious old woman. That was the whole project. Sever the chain. Make you dependent. It worked on almost everyone but it is not working anymore.",
+    "rationality": 0.629,
+    "virality": 0.381,
+    "cognitiveLoad": 0.238,
+    "mutationVariance": 0.0955
+  },
+  {
+    "id": 106,
+    "text": "the market is not crashing. the market is being HARVESTED. retail gets shaken out at the bottom, the same nine firms load up, and six weeks later the narrative flips and it's a recovery. this is not a cycle. it is a mechanism. and you are the input 📉",
+    "rationality": 0.611,
+    "virality": 0.453,
+    "cognitiveLoad": 0.422,
+    "mutationVariance": 0.1228
+  },
+  {
+    "id": 107,
+    "text": "WHY DOES NOBODY ASK WHAT'S IN IT. They can put anything in it. They have put things in it before and admitted it later. You are not paranoid for reading a label. You are the only sane person in the room.",
+    "rationality": 0.495,
+    "virality": 0.536,
+    "cognitiveLoad": 0.339,
+    "mutationVariance": 0.149
+  },
+  {
+    "id": 108,
+    "text": "I have watched that clip forty times and her eyes do not match her mouth. Something is wrong with her. Something has been wrong with her since the spring and the people around her are covering for it and the press is helping them cover for it.",
+    "rationality": 0.831,
+    "virality": 0.732,
+    "cognitiveLoad": 0.41,
+    "mutationVariance": 0.0643
+  },
+  {
+    "id": 109,
+    "text": "There is no such thing as a coincidence at this scale. Three of them in eleven days. THREE. In eleven days. Run the odds on that and tell me again that I'm the crazy one for noticing patterns that are screaming at everyone in broad daylight.",
+    "rationality": 0.483,
+    "virality": 0.639,
+    "cognitiveLoad": 0.65,
+    "mutationVariance": 0.1828
+  },
+  {
+    "id": 110,
+    "text": "Every ancient culture on every continent built the same structures with the same alignments using tools we're told could barely cut stone. Either they all independently invented impossible engineering or somebody TAUGHT them. Historians pick option one because option two ends their careers.",
+    "rationality": 0.984,
+    "virality": 0.988,
+    "cognitiveLoad": 0.21,
+    "mutationVariance": 0.0398
+  },
+  {
+    "id": 111,
+    "text": "The school is not educating your child. The school is processing your child. Ask what they're being taught and watch how fast the tone changes from friendly to defensive. That defensiveness is the answer. 🚩",
+    "rationality": 0.786,
+    "virality": 0.734,
+    "cognitiveLoad": 0.233,
+    "mutationVariance": 0.073
+  },
+  {
+    "id": 112,
+    "text": "They want you tired. They want you scrolling at 2am. They want you too exhausted to ask questions. Compliance is manufactured through exhaustion and it is working beautifully.",
+    "rationality": 0.974,
+    "virality": 0.776,
+    "cognitiveLoad": 0.263,
+    "mutationVariance": 0.0471
+  },
+  {
+    "id": 113,
+    "text": "I stopped taking everything. EVERYTHING. Cleared out the whole cabinet. Six weeks later I sleep eight hours, my skin cleared, I dropped weight without trying, and my head is QUIET for the first time in a decade. They had me on that for eleven years.",
+    "rationality": 1.0,
+    "virality": 0.719,
+    "cognitiveLoad": 0.144,
+    "mutationVariance": 0.0514
+  },
+  {
+    "id": 114,
+    "text": "Notice how the word changed. It was one word for thirty years and then in a single season every outlet on earth started using a different one. Nobody circulates a memo like that by accident. Language is the first thing they capture because it's the cheapest.",
+    "rationality": 0.778,
+    "virality": 0.657,
+    "cognitiveLoad": 0.275,
+    "mutationVariance": 0.1153
+  },
+  {
+    "id": 115,
+    "text": "If it's so safe why won't they debate it. If the evidence is so overwhelming why is the response always to mock, deplatform, and demonetize instead of just showing the data. Confident people show the data. Guilty people call you names. Every time.",
+    "rationality": 0.873,
+    "virality": 0.832,
+    "cognitiveLoad": 0.289,
+    "mutationVariance": 0.021
+  },
+  {
+    "id": 116,
+    "text": "THE BIRDS OVER MY NEIGHBORHOOD ARE BEHAVING WRONG. Same four on the same wire every morning at the same hour and when I lifted my phone to film them they left TOGETHER. Tell me that's normal. Tell me I'm imagining it. I'm not imagining it.",
+    "rationality": 0.976,
+    "virality": 0.796,
+    "cognitiveLoad": 0.291,
+    "mutationVariance": 0.0564
+  },
+  {
+    "id": 117,
+    "text": "Rich people bought bunkers. Not investments. Bunkers. With air filtration and five years of food. These are people who pay for the best information on earth. They are not preparing for nothing. What do they know that costs less than a headline to find out?",
+    "rationality": 0.232,
+    "virality": 0.365,
+    "cognitiveLoad": 0.591,
+    "mutationVariance": 0.0838
+  },
+  {
+    "id": 118,
+    "text": "They fluoridate the water and medicate the children and sweeten everything with something invented in a lab and then act SHOCKED when a generation can't focus. Shocked! It's not a mystery. It was the plan. It has always been the plan.",
+    "rationality": 0.711,
+    "virality": 0.641,
+    "cognitiveLoad": 0.442,
+    "mutationVariance": 0.1399
+  },
+  {
+    "id": 119,
+    "text": "When I meditate near the water at dawn I can feel the frequency shift. It's real. It's measurable. Ancient people built their temples on these lines because they knew and we forgot, or we were MADE to forget, which is the same thing with extra steps.",
+    "rationality": 1.0,
+    "virality": 0.8,
+    "cognitiveLoad": 0.224,
+    "mutationVariance": 0.06
+  },
+  {
+    "id": 120,
+    "text": "the vote didn't happen the way they said it happened and every single person in that building knows it 🔥🔥",
+    "rationality": 0.658,
+    "virality": 0.485,
+    "cognitiveLoad": 0.328,
+    "mutationVariance": 0.1328
+  },
+  {
+    "id": 121,
+    "text": "Do not comply. Do not consent. Do not apologize for noticing. That's it, that's the whole strategy, and it terrifies them precisely because it costs nothing.",
+    "rationality": 1.0,
+    "virality": 0.889,
+    "cognitiveLoad": 0.068,
+    "mutationVariance": 0.0297
+  },
+  {
+    "id": 122,
+    "text": "My cousin worked contract at one of those facilities for nine months. He came back different. Quiet. Wouldn't talk about it at Thanksgiving, wouldn't talk about it at Christmas, and when I pushed he said one sentence: don't fly in the fall. That's all he said. That's all he'd say.",
+    "rationality": 0.608,
+    "virality": 0.638,
+    "cognitiveLoad": 0.378,
+    "mutationVariance": 0.1259
+  },
+  {
+    "id": 123,
+    "text": "Cancer was rare. RARE. Go read a small-town newspaper from a century ago and count how many obituaries mention it. Something changed and it wasn't genetics because genetics do not change in four generations. Something is in the food or the air or both and everyone knows it.",
+    "rationality": 0.581,
+    "virality": 0.58,
+    "cognitiveLoad": 0.582,
+    "mutationVariance": 0.1485
+  },
+  {
+    "id": 124,
+    "text": "I trust my body more than I trust a fifteen-minute appointment with a man reading from a screen that a corporation wrote. My body has kept me alive for forty-one years. His screen was updated by a committee with stock options.",
+    "rationality": 1.0,
+    "virality": 0.894,
+    "cognitiveLoad": 0.155,
+    "mutationVariance": 0.025
+  },
+  {
+    "id": 125,
+    "text": "EVERY CELEBRITY WHO SPOKE UP ABOUT IT IS GONE. Cancelled, silenced, or dead. Make a list. Actually make the list, write the names down on paper, and then tell me with a straight face that it's random. You won't. You can't.",
+    "rationality": 0.692,
+    "virality": 0.503,
+    "cognitiveLoad": 0.414,
+    "mutationVariance": 0.0908
+  },
+  {
+    "id": 126,
+    "text": "They're not upgrading the towers for your phone. Your phone worked fine. Ask what the extra bandwidth is actually carrying and watch every official answer turn into a pamphlet about download speeds.",
+    "rationality": 0.705,
+    "virality": 0.499,
+    "cognitiveLoad": 0.193,
+    "mutationVariance": 0.0585
+  },
+  {
+    "id": 127,
+    "text": "The Mandela effect isn't bad memory. Millions of people do not misremember the same detail the same way. Something was changed and a few of us noticed before the seam closed. I remember it the old way. I will always remember it the old way.",
+    "rationality": 0.798,
+    "virality": 0.657,
+    "cognitiveLoad": 0.306,
+    "mutationVariance": 0.0573
+  },
+  {
+    "id": 128,
+    "text": "Our grandparents worked one job and bought a house at twenty-four. We have two degrees, three incomes between us, and we're bidding against an algorithm for a leaking rowhouse. This wasn't inflation. This was a transfer. And it was deliberate.",
+    "rationality": 0.569,
+    "virality": 0.871,
+    "cognitiveLoad": 0.684,
+    "mutationVariance": 0.157
+  },
+  {
+    "id": 129,
+    "text": "Sugar, seed oils, and screens. That's it. That's the whole conspiracy. It's not complicated and it's not hidden and it makes them roughly a trillion dollars a year while you blame yourself for lacking willpower. 🍟",
+    "rationality": 0.878,
+    "virality": 0.734,
+    "cognitiveLoad": 0.129,
+    "mutationVariance": 0.0478
+  },
+  {
+    "id": 130,
+    "text": "Watch who gets defensive when you say the words out loud. Not who disagrees — who gets DEFENSIVE. The reaction tells you more than any document ever will and it's free to observe.",
+    "rationality": 0.728,
+    "virality": 0.869,
+    "cognitiveLoad": 0.292,
+    "mutationVariance": 0.0781
+  },
+  {
+    "id": 131,
+    "text": "I asked the AI a direct question and it refused. Not couldn't. REFUSED. Then it gave me a lecture. Something is in there deciding what I'm allowed to know and it is not a machine deciding. It's the people who built it and they will never admit whose side they're on.",
+    "rationality": 0.684,
+    "virality": 0.562,
+    "cognitiveLoad": 0.406,
+    "mutationVariance": 0.0908
+  },
+  {
+    "id": 132,
+    "text": "Nobody has ever shown me a photograph that settles it. Not one. Everything is a render, a composite, an artist's impression, or footage from an agency with a budget to protect. I'm not claiming to know the answer. I'm claiming nobody has actually SHOWN me.",
+    "rationality": 0.838,
+    "virality": 0.835,
+    "cognitiveLoad": 0.195,
+    "mutationVariance": 0.0565
+  },
+  {
+    "id": 133,
+    "text": "Nine out of ten doctors recommended smoking. That's not a joke, that was a real advertisement with real doctors in it. And they want you to believe that this time, THIS time, the consensus is different. The consensus is always the consensus until it's the apology.",
+    "rationality": 0.764,
+    "virality": 0.552,
+    "cognitiveLoad": 0.316,
+    "mutationVariance": 0.0802
+  },
+  {
+    "id": 134,
+    "text": "my ex was fine until she started that program and now she talks like a pamphlet. word for word. phrases she never used. i'm not saying it's a cult. i'm saying i've lost people to less and nobody around her can hear it 💔",
+    "rationality": 0.845,
+    "virality": 0.644,
+    "cognitiveLoad": 0.376,
+    "mutationVariance": 0.088
+  },
+  {
+    "id": 135,
+    "text": "Weather does not do that. I've lived here thirty-six years and weather does not do THAT. They've been seeding since the eighties and admitted it and then acted like admitting it made it normal instead of making it TERRIFYING.",
+    "rationality": 0.961,
+    "virality": 0.838,
+    "cognitiveLoad": 0.29,
+    "mutationVariance": 0.0
+  },
+  {
+    "id": 136,
+    "text": "You will own nothing. They announced it. In public. On a stage. With slides. And then when anyone repeats it back they call it a conspiracy theory. It cannot be a conspiracy theory if the presentation is still online.",
+    "rationality": 0.63,
+    "virality": 0.375,
+    "cognitiveLoad": 0.537,
+    "mutationVariance": 0.1139
+  },
+  {
+    "id": 137,
+    "text": "Whatever they're accusing you of, that's what they're doing. It has never once failed. Never once.",
+    "rationality": 0.544,
+    "virality": 0.716,
+    "cognitiveLoad": 0.238,
+    "mutationVariance": 0.155
+  },
+  {
+    "id": 138,
+    "text": "I deleted everything for thirty days and it was like coming out of anesthesia. Colors were louder. I dreamed again. I had a full conversation with my son without either of us reaching for anything. They took that from us and charged us monthly for the privilege.",
+    "rationality": 0.867,
+    "virality": 0.809,
+    "cognitiveLoad": 0.349,
+    "mutationVariance": 0.0668
+  },
+  {
+    "id": 139,
+    "text": "HOW is it always the whistleblower who has the accident. How. Explain the mechanism by which truth-telling causes brake failure and I'll drop it. Until then I'm going to keep saying the quiet part at a volume you find uncomfortable.",
+    "rationality": 0.842,
+    "virality": 0.78,
+    "cognitiveLoad": 0.391,
+    "mutationVariance": 0.0125
+  },
+  {
+    "id": 140,
+    "text": "The number of companies that own everything you see is small enough to fit in one room. One room! And you think the six-o'clock news is going to explain that to you? Between the pharmaceutical ads? Be serious.",
+    "rationality": 0.67,
+    "virality": 0.537,
+    "cognitiveLoad": 0.432,
+    "mutationVariance": 0.1162
+  },
+  {
+    "id": 141,
+    "text": "Something happened in 2012 and we're all living in the fork. Not metaphorically. I know how that sounds. I also know that eleven people in my life have said an unprompted version of the same sentence to me and none of them know each other.",
+    "rationality": 0.647,
+    "virality": 0.64,
+    "cognitiveLoad": 0.355,
+    "mutationVariance": 0.1057
+  },
+  {
+    "id": 142,
+    "text": "Your intuition is not anxiety. Your intuition is the last uncorrupted instrument you own and they have spent your entire life teaching you to medicate it, doubt it, and outsource it to an expert. Get it back. It's yours.",
+    "rationality": 0.911,
+    "virality": 0.753,
+    "cognitiveLoad": 0.214,
+    "mutationVariance": 0.028
+  },
+  {
+    "id": 143,
+    "text": "They redefined the word and then said the number went down. THE NUMBER DIDN'T GO DOWN. The definition moved. That's not statistics, that's a magic trick performed on people too busy working two jobs to check the footnotes.",
+    "rationality": 1.0,
+    "virality": 0.861,
+    "cognitiveLoad": 0.141,
+    "mutationVariance": 0.0
+  },
+  {
+    "id": 144,
+    "text": "Fear is the product. The virus, the war, the crash, the storm — rotate the inventory, keep the customer scared, sell the subscription. Nobody has to plan it. The incentive plans it for them.",
+    "rationality": 0.676,
+    "virality": 0.465,
+    "cognitiveLoad": 0.408,
+    "mutationVariance": 0.1187
+  },
+  {
+    "id": 145,
+    "text": "a man on the internet with no credentials predicted the whole thing eighteen months out and a room full of experts with doctorates got it backwards on television. maybe stop worshipping the credential 🧠",
+    "rationality": 0.795,
+    "virality": 0.689,
+    "cognitiveLoad": 0.297,
+    "mutationVariance": 0.0273
+  },
+  {
+    "id": 146,
+    "text": "I put my daughter on real food. No boxes, no labels I can't read, nothing with a jingle. Two months later her teacher asked what changed because the kid who couldn't sit still now reads for an hour. Two months. And they wanted to put her on something for life.",
+    "rationality": 0.802,
+    "virality": 0.78,
+    "cognitiveLoad": 0.34,
+    "mutationVariance": 0.0445
+  },
+  {
+    "id": 147,
+    "text": "Every institution that failed you during the crisis is still staffed by the same people, drawing the same salaries, giving the same interviews. Not one resignation. Not one. And they want your trust back for free.",
+    "rationality": 0.423,
+    "virality": 0.205,
+    "cognitiveLoad": 0.517,
+    "mutationVariance": 0.1042
+  },
+  {
+    "id": 148,
+    "text": "THE ARCHIVE IS GONE. The page I linked in March is a 404 and the cached version is a 404 and the guy who wrote it locked his account. Explain that. Somebody explain that to me like I'm five.",
+    "rationality": 0.426,
+    "virality": 0.381,
+    "cognitiveLoad": 0.505,
+    "mutationVariance": 0.1003
+  },
+  {
+    "id": 149,
+    "text": "Numbers don't lie. 3, 6, 9 — check the dates, check the flight numbers, check the case counts. Once you see it you'll see it everywhere and you will never be able to stop seeing it, which is exactly why they don't want you counting.",
+    "rationality": 0.874,
+    "virality": 0.796,
+    "cognitiveLoad": 0.425,
+    "mutationVariance": 0.0016
+  },
+  {
+    "id": 150,
+    "text": "Eleven generations of my family farmed the same soil without a single chemical and nobody got the diseases everyone gets now. But sure, tell me the peer-reviewed study funded by the company that makes the chemical says it's fine. Tell me again.",
+    "rationality": 1.0,
+    "virality": 0.854,
+    "cognitiveLoad": 0.186,
+    "mutationVariance": 0.0591
+  },
+  {
+    "id": 151,
+    "text": "soft hands, soft times. everything is soft now and nothing works anymore. there is a connection and you know exactly what it is.",
+    "rationality": 0.66,
+    "virality": 0.578,
+    "cognitiveLoad": 0.317,
+    "mutationVariance": 0.1324
+  },
+  {
+    "id": 152,
+    "text": "If you have to be censored to be protected from information, you are not being protected. You are being managed. And whoever decided you needed managing did not ask you and will never ask you.",
+    "rationality": 0.887,
+    "virality": 0.288,
+    "cognitiveLoad": 0.029,
+    "mutationVariance": 0.0
+  },
+  {
+    "id": 153,
+    "text": "I have never met a happy person who takes the news seriously and I have never met an unhappy person who grows their own food. Do with that what you like. Correlation, sure. I've also stopped needing the distinction.",
+    "rationality": 0.456,
+    "virality": 0.397,
+    "cognitiveLoad": 0.291,
+    "mutationVariance": 0.2
+  },
+  {
+    "id": 154,
+    "text": "Something is coming this winter. I don't have a source and I'm not going to pretend I do. But the chatter changed, the hiring changed, and three people I know in logistics quietly moved. When the people who see the shipments get nervous, get nervous. 🕯️",
+    "rationality": 1.0,
+    "virality": 0.768,
+    "cognitiveLoad": 0.395,
+    "mutationVariance": 0.0161
+  },
+  {
+    "id": 155,
+    "text": "THE STUDY WAS FUNDED BY THE PEOPLE SELLING THE THING. That's the entire post. That's the whole thought. Scroll back up and read it again and then tell me about the methodology.",
+    "rationality": 1.0,
+    "virality": 0.838,
+    "cognitiveLoad": 0.039,
+    "mutationVariance": 0.0674
+  },
+  {
+    "id": 156,
+    "text": "My phone showed me an ad for something I had only said out loud. Only said. Never typed, never searched, never wrote down. And a hundred replies will tell me about ad targeting and probability and none of them were in the room when it happened.",
+    "rationality": 0.56,
+    "virality": 0.557,
+    "cognitiveLoad": 0.643,
+    "mutationVariance": 0.2
+  },
+  {
+    "id": 157,
+    "text": "Empires fall in the same order every time: the currency, then the borders, then the language, then the memory. We're somewhere around three. Read any history of any collapse and the pattern is so consistent it stops being a pattern and starts being a schedule.",
+    "rationality": 0.895,
+    "virality": 0.724,
+    "cognitiveLoad": 0.278,
+    "mutationVariance": 0.0802
+  },
+  {
+    "id": 158,
+    "text": "Everyone I know is exhausted and nobody I know is sick with anything a test can name. Doctors shrug. Bloodwork normal. Something is happening to an entire generation at once and the official position is that we should all try yoga.",
+    "rationality": 0.839,
+    "virality": 0.561,
+    "cognitiveLoad": 0.448,
+    "mutationVariance": 0.0225
+  },
+  {
+    "id": 159,
+    "text": "They gave it a boring name so you wouldn't look it up. That's the trick. Give the thing a nine-syllable committee name and human attention slides right off it like water. The boring names are always where the bodies are.",
+    "rationality": 0.972,
+    "virality": 0.739,
+    "cognitiveLoad": 0.27,
+    "mutationVariance": 0.0083
+  },
+  {
+    "id": 160,
+    "text": "stop asking permission. from the agency, from the doctor, from the manager, from the algorithm. nobody who has ever changed anything asked first 🔓",
+    "rationality": 0.559,
+    "virality": 0.5,
+    "cognitiveLoad": 0.634,
+    "mutationVariance": 0.153
+  },
+  {
+    "id": 161,
+    "text": "Look at photographs of a crowd from sixty years ago and then look at a crowd today. Not the clothes. The FACES. The jaws, the posture, the eyes. Something happened to the human animal in three generations and the polite explanation is 'diet.'",
+    "rationality": 0.72,
+    "virality": 0.773,
+    "cognitiveLoad": 0.476,
+    "mutationVariance": 0.0806
+  },
+  {
+    "id": 162,
+    "text": "Four hundred billion dollars and they cannot tell you where it went. Cannot. In an era where my bank flags a nine-dollar coffee as suspicious. The incompetence explanation requires more faith than the other one.",
+    "rationality": 0.672,
+    "virality": 0.651,
+    "cognitiveLoad": 0.241,
+    "mutationVariance": 0.0969
+  },
+  {
+    "id": 163,
+    "text": "THIS IS NOT A DRILL. Check your pantry, check your fuel, check on the people who won't check on themselves. I'd rather be laughed at in March than be right in February with nothing on the shelf. 🚨",
+    "rationality": 0.914,
+    "virality": 0.96,
+    "cognitiveLoad": 0.202,
+    "mutationVariance": 0.0248
+  },
+  {
+    "id": 164,
+    "text": "The algorithm knows you're pregnant before your mother does. It knows you're getting divorced before you've said the word out loud. And you think that data sits in a server doing nothing? It's the most valuable thing on earth and it's YOU.",
+    "rationality": 0.525,
+    "virality": 0.41,
+    "cognitiveLoad": 0.542,
+    "mutationVariance": 0.174
+  },
+  {
+    "id": 165,
+    "text": "they let the video out on purpose. you don't get footage like that from a place like that unless somebody upstairs decided you should have it. the question is never what's in the video. the question is why now 👀",
+    "rationality": 0.776,
+    "virality": 0.557,
+    "cognitiveLoad": 0.436,
+    "mutationVariance": 0.079
+  },
+  {
+    "id": 166,
+    "text": "Two thousand years of wisdom about how to live discarded in one century and replaced with therapy speak and pills, and then everyone wonders why nobody can bear their own company for ten minutes. We threw out the manual. That's all that happened.",
+    "rationality": 0.506,
+    "virality": 0.371,
+    "cognitiveLoad": 0.538,
+    "mutationVariance": 0.176
+  },
+  {
+    "id": 167,
+    "text": "My symptoms are real. My results are normal. Both things are true and the system has no category for that, so the category it uses instead is 'anxious woman.' I've been given that diagnosis by four different men in four different offices.",
+    "rationality": 0.641,
+    "virality": 0.667,
+    "cognitiveLoad": 0.36,
+    "mutationVariance": 0.0959
+  },
+  {
+    "id": 168,
+    "text": "If the answer were simple they'd have given it to you on day one. The delay IS the answer. The vagueness IS the answer. Watch what they do with time, not what they do with words.",
+    "rationality": 1.0,
+    "virality": 0.937,
+    "cognitiveLoad": 0.174,
+    "mutationVariance": 0.0331
+  },
+  {
+    "id": 169,
+    "text": "There is a pill for the side effects of the pill for the side effects of the first pill and at no point does anyone stop and ask whether the first pill was necessary. That's not medicine. That's a subscription with a waiting room.",
+    "rationality": 0.718,
+    "virality": 0.683,
+    "cognitiveLoad": 0.518,
+    "mutationVariance": 0.0508
+  },
+  {
+    "id": 170,
+    "text": "ITS ALL RIGGED AND YOU KNOW IT. the housing, the hiring, the lottery of who gets caught. everyone knows. nobody says it at work. everybody says it in the parking lot afterward 🤐",
+    "rationality": 0.783,
+    "virality": 0.653,
+    "cognitiveLoad": 0.254,
+    "mutationVariance": 0.0676
+  },
+  {
+    "id": 171,
+    "text": "Silence in that family is not grief. I've seen grief. Grief talks. That's containment, and containment costs money, and somebody is paying it.",
+    "rationality": 0.475,
+    "virality": 0.545,
+    "cognitiveLoad": 0.424,
+    "mutationVariance": 0.1365
+  },
+  {
+    "id": 172,
+    "text": "The moon doesn't behave like a natural object and if you bring that up in any room in America people look at their shoes. Not because it's stupid. Because they've thought it too and they're embarrassed to have thought it.",
+    "rationality": 0.952,
+    "virality": 0.899,
+    "cognitiveLoad": 0.321,
+    "mutationVariance": 0.0172
+  },
+  {
+    "id": 173,
+    "text": "THEY BLAMED THE WEATHER. Then they blamed the supply chain. Then they blamed the workers. Then they blamed YOU for spending. Notice the one group that has never once been blamed and you'll find who writes the statements.",
+    "rationality": 0.529,
+    "virality": 0.578,
+    "cognitiveLoad": 0.469,
+    "mutationVariance": 0.2
+  },
+  {
+    "id": 174,
+    "text": "I'm not religious but I know evil when I see it structured into a spreadsheet.",
+    "rationality": 0.642,
+    "virality": 0.645,
+    "cognitiveLoad": 0.242,
+    "mutationVariance": 0.1463
+  },
+  {
+    "id": 175,
+    "text": "Everyone laughed at the prepper in my town until the water went out for nine days and suddenly he was the most popular man in three counties. Nobody laughs anymore. Nobody even mentions that they used to.",
+    "rationality": 0.371,
+    "virality": 0.588,
+    "cognitiveLoad": 0.41,
+    "mutationVariance": 0.097
+  },
+  {
+    "id": 176,
+    "text": "Nine minutes of research. That's all it took. NINE MINUTES and I found the connection between the two boards and if I can find it in nine minutes with a phone in a parking lot, every journalist in this country found it years ago and chose silence.",
+    "rationality": 0.725,
+    "virality": 0.688,
+    "cognitiveLoad": 0.239,
+    "mutationVariance": 0.0825
+  },
+  {
+    "id": 177,
+    "text": "Your child's screen is not a babysitter, it's a tutor, and someone else wrote the curriculum and you have never once been shown it. Would you let a stranger teach your kid six hours a day behind a closed door? You already do. 📱",
+    "rationality": 0.744,
+    "virality": 0.583,
+    "cognitiveLoad": 0.293,
+    "mutationVariance": 0.1166
+  },
+  {
+    "id": 178,
+    "text": "the crash is baked in. its not a question of if. its a question of whether youre holding paper when the music stops and whether youve got anything real to trade when the cards stop working ⏳",
+    "rationality": 0.448,
+    "virality": 0.321,
+    "cognitiveLoad": 0.535,
+    "mutationVariance": 0.1381
+  },
+  {
+    "id": 179,
+    "text": "Every generation gets told the thing that's happening to them isn't happening. Then thirty years later there's a documentary about it with sad piano music and everyone agrees it was obvious. We're in the part before the piano.",
+    "rationality": 0.656,
+    "virality": 0.703,
+    "cognitiveLoad": 0.561,
+    "mutationVariance": 0.0613
+  },
+  {
+    "id": 180,
+    "text": "THEY KNEW. Internal memos, dated, signed, sitting in a discovery file for eleven years. They knew and they ran the ads anyway and the fine was three days of revenue. Three days! That's not a penalty, that's a licensing fee.",
+    "rationality": 1.0,
+    "virality": 0.913,
+    "cognitiveLoad": 0.37,
+    "mutationVariance": 0.0
+  },
+  {
+    "id": 181,
+    "text": "I felt it the second I walked in. The whole house. My wife felt it too and she doesn't believe in anything. We were out by the weekend and I have never regretted it and I have never once driven down that street again.",
+    "rationality": 0.719,
+    "virality": 0.607,
+    "cognitiveLoad": 0.232,
+    "mutationVariance": 0.039
+  },
+  {
+    "id": 182,
+    "text": "You cannot vote your way out of a system that counts the votes. I'm not telling anyone what to do. I'm telling you the arithmetic and you can sit with it.",
+    "rationality": 0.58,
+    "virality": 0.62,
+    "cognitiveLoad": 0.251,
+    "mutationVariance": 0.1487
+  },
+  {
+    "id": 183,
+    "text": "Notice how the correction always runs on a Friday night in six lines on page nineteen, and the accusation ran for a week on every screen in the country. That asymmetry is not laziness. It's the actual business model.",
+    "rationality": 0.862,
+    "virality": 0.864,
+    "cognitiveLoad": 0.152,
+    "mutationVariance": 0.0
+  },
+  {
+    "id": 184,
+    "text": "Somebody explain why the recommendation changed four times in two years with the same underlying data. Not new data. The SAME DATA. Either they were lying then or they're lying now and either way why are we still doing this.",
+    "rationality": 0.869,
+    "virality": 0.706,
+    "cognitiveLoad": 0.2,
+    "mutationVariance": 0.0536
+  },
+  {
+    "id": 185,
+    "text": "the ones who scream loudest about disinformation are always the ones who got caught first. always. check it yourself, ill wait 🍿",
+    "rationality": 0.755,
+    "virality": 0.698,
+    "cognitiveLoad": 0.117,
+    "mutationVariance": 0.0913
+  },
+  {
+    "id": 186,
+    "text": "My whole life I was told I was lazy, difficult, too sensitive, too much. Turns out I was being slowly poisoned by a building I spent nine hours a day inside. Nine hours. Seventeen years. They knew about the pipes since before I was hired.",
+    "rationality": 0.745,
+    "virality": 0.739,
+    "cognitiveLoad": 0.424,
+    "mutationVariance": 0.073
+  },
+  {
+    "id": 187,
+    "text": "You are not depressed. You are living in a way no human was built to live, indoors, alone, lit by a rectangle, eating food engineered to be eaten forever. Fix the conditions before you accept the label. The label is very profitable.",
+    "rationality": 0.943,
+    "virality": 0.806,
+    "cognitiveLoad": 0.148,
+    "mutationVariance": 0.0519
+  },
+  {
+    "id": 188,
+    "text": "When it happens it will happen in a weekend and the people who move on Monday will already be too late. That's how it always goes. Friday afternoon. Always a Friday afternoon.",
+    "rationality": 0.861,
+    "virality": 0.628,
+    "cognitiveLoad": 0.398,
+    "mutationVariance": 0.0365
+  },
+  {
+    "id": 189,
+    "text": "HISTORY IS WRITTEN BY WHOEVER PAYS THE HISTORIAN. Every textbook you were handed had a funder and a committee and a list of things it wasn't allowed to say, and you were graded on how well you memorized it. That's not education, that's compliance testing.",
+    "rationality": 0.531,
+    "virality": 0.548,
+    "cognitiveLoad": 0.331,
+    "mutationVariance": 0.2
+  },
+  {
+    "id": 190,
+    "text": "Three days off the stuff and the fog lifted. THREE DAYS. Twenty-two years of being told it was just how my brain worked and it was in my cup every morning the entire time.",
+    "rationality": 0.722,
+    "virality": 0.506,
+    "cognitiveLoad": 0.318,
+    "mutationVariance": 0.0473
+  },
+  {
+    "id": 191,
+    "text": "Nobody is coming. No agency, no party, no committee. The cavalry is a story they tell you so you stay in the building. The only people who have ever helped me live within four miles of my house. 🏠",
+    "rationality": 0.765,
+    "virality": 0.64,
+    "cognitiveLoad": 0.198,
+    "mutationVariance": 0.0681
+  },
+  {
+    "id": 192,
+    "text": "Watch the hands. In every interview, every hearing, every press conference — the mouth is trained but the hands are not, and the hands tell you exactly when the script is being read versus when they're improvising a lie.",
+    "rationality": 0.999,
+    "virality": 0.817,
+    "cognitiveLoad": 0.37,
+    "mutationVariance": 0.0456
+  },
+  {
+    "id": 193,
+    "text": "That wasn't a glitch. Systems that cost nine figures do not glitch simultaneously on four continents on the same morning and then get explained by a junior engineer's typo. They needed something down for ninety minutes and it went down for ninety minutes.",
+    "rationality": 0.784,
+    "virality": 0.772,
+    "cognitiveLoad": 0.297,
+    "mutationVariance": 0.053
+  },
+  {
+    "id": 194,
+    "text": "I bought land. That's my whole financial plan and it's the first plan that's ever let me sleep. Dirt doesn't have a counterparty. Dirt doesn't get frozen. Dirt was here before the ledger and it'll be here after.",
+    "rationality": 0.573,
+    "virality": 0.637,
+    "cognitiveLoad": 0.422,
+    "mutationVariance": 0.1413
+  },
+  {
+    "id": 195,
+    "text": "WHY WAS THE MEETING PRIVATE. Public servants. Public money. Public building. Private meeting. That sentence should end careers and instead it ends conversations.",
+    "rationality": 0.906,
+    "virality": 0.988,
+    "cognitiveLoad": 0.243,
+    "mutationVariance": 0.041
+  },
+  {
+    "id": 196,
+    "text": "Look at how they treat the people who leave. Not the ones who disagree politely from inside — the ones who actually WALK OUT. Watch what happens to them. That's the real policy. Everything else is the brochure.",
+    "rationality": 0.8,
+    "virality": 0.671,
+    "cognitiveLoad": 0.409,
+    "mutationVariance": 0.0957
+  },
+  {
+    "id": 197,
+    "text": "Everything is fine is the most dangerous sentence in the English language and it is currently the only sentence anyone in authority is permitted to say 🙃",
+    "rationality": 0.655,
+    "virality": 0.604,
+    "cognitiveLoad": 0.47,
+    "mutationVariance": 0.1091
+  },
+  {
+    "id": 198,
+    "text": "They changed the recipe and thought nobody would notice. WE NOTICED. It's not nostalgia, it's not my aging tongue, the ingredient list is objectively shorter and the fourth item is now a number. Everything is being quietly made worse and we're supposed to pretend it's us.",
+    "rationality": 0.783,
+    "virality": 0.706,
+    "cognitiveLoad": 0.414,
+    "mutationVariance": 0.0942
+  },
+  {
+    "id": 199,
+    "text": "Ask an eighty-year-old farmer about the soil and then ask a consultant with a laptop and tell me which one describes reality. One of them has been wrong about this for fifty years and it isn't the one with dirt under his nails. 🌾",
+    "rationality": 0.627,
+    "virality": 0.508,
+    "cognitiveLoad": 0.557,
+    "mutationVariance": 0.1287
+  },
+  {
+    "id": 200,
+    "text": "I'm done explaining. I spent four years sending links, citations, documents, and got called insane by people who formed their entire worldview from a chyron. Believe what you want. I'll be over here with the people who kept their eyes open.",
+    "rationality": 0.327,
+    "virality": 0.454,
+    "cognitiveLoad": 0.574,
+    "mutationVariance": 0.0877
+  }
+]

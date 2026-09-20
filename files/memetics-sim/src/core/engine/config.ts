@@ -1,4 +1,9 @@
 export interface SimConfig {
+  platformSelection: number;
+  platformRigor: number;
+  platformOutrage: number;
+  platformAbsurdity: number;
+  platformSimplicity: number;
   seed: number;
   agentCount: number;
   meanDegree: number;
@@ -32,6 +37,11 @@ export interface SimConfig {
 }
 
 export const DEFAULT_CONFIG: SimConfig = {
+  platformSelection: 0.65,
+  platformRigor: 0.1,
+  platformOutrage: 1,
+  platformAbsurdity: 0.4,
+  platformSimplicity: 0.8,
   seed: 20260918,
   agentCount: 320,
   meanDegree: 8,

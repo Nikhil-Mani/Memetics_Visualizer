@@ -15,7 +15,15 @@ export default function MetricsBar() {
   const drift = metrics.rationalityIndex - rhoStart;
 
   return (
-    <div className="grid grid-cols-1 gap-px bg-hair sm:grid-cols-2 xl:grid-cols-4">
+    <div className="bg-hair">
+      <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1 border-b border-hair bg-panel px-5 py-3" data-testid="mutation-summary">
+        <span className="text-sm text-mist">Mutated this run <strong className="font-mono text-cyan" data-testid="mutated-share">{pct(metrics.mutatedShare, 1)}</strong></span>
+        <span className="text-xs text-slate">{metrics.generatedMutations} variants / {metrics.totalMemesCreated} total unique memes created</span>
+        <span className="text-xs text-slate">Currently circulating: {pct(metrics.liveMutatedShare, 1)} mutated ({metrics.liveMutations}/{metrics.liveMemes})</span>
+        <span className="text-xs text-slate">Highest generation: <strong data-testid="max-generation">{metrics.maxGeneration}</strong></span>
+        <span className="w-full text-[10px] text-slate">Run percentage includes all generated variants, even if rejected or retired; denominator includes the 200 original tweets. Resets with each new run.</span>
+      </div>
+      <div className="metrics-grid">
       <Panel
         title="Societal rationality"
         value={num(metrics.rationalityIndex, 3)}
@@ -42,16 +50,16 @@ export default function MetricsBar() {
         title="Polarisation"
         value={num(metrics.bimodality, 3)}
         caption={`${describeBimodality(metrics.bimodality)} · Sarle's coefficient, split above 0.555`}
-        accent="#8FA6FF"
+        accent="#d0d0d0"
       >
-        <Sparkline values={bimodal.values} color="#8FA6FF" min={0.1} max={1} baseline={5 / 9} />
+        <Sparkline values={bimodal.values} color="#d0d0d0" min={0.1} max={1} baseline={5 / 9} />
       </Panel>
 
       <Panel
         title="Transmission"
         value={num(metrics.adoptionsPerTick, 1)}
         caption={`adoptions per tick · mean peer trust ${num(metrics.meanTrust)} · susceptibility ${num(metrics.susceptibility)}`}
-        accent="#3FE0D0"
+        accent="#f3f3ef"
       >
         <div className="flex h-full items-end gap-[3px]">
           {engine.susceptibilityHistory.values.slice(-48).map((v, i) => (
@@ -63,6 +71,7 @@ export default function MetricsBar() {
           ))}
         </div>
       </Panel>
+      </div>
     </div>
   );
 }

@@ -5,10 +5,10 @@ import { ramp } from '../palette';
 import { TRAIL_CAPACITY } from '../../core/types/Agent';
 
 const BINS = 22;
-const BG = '#070A0F';
+const BG = '#080808';
 
 /**
- * Mode A — the ideological map. Agents are projected from the 6-D worldview
+ * Mode A — the ideological map. Agents are projected from the 256-D worldview
  * hypersphere into the first two principal components and coloured by epistemic
  * rigor. Trails are the last few projected positions, so a population drifting
  * into a new consensus leaves a visible current.
@@ -105,8 +105,8 @@ export default function SemanticCanvas() {
 
     // --- highlights ----------------------------------------------------------
     const markers: [number | null, string, number][] = [
-      [hover.current, 'rgba(220,229,236,0.55)', 7],
-      [selectedAgent, '#DCE5EC', 9],
+      [hover.current, 'rgba(240,240,240,0.55)', 7],
+      [selectedAgent, '#f3f3ef', 9],
     ];
     for (const [idx, colour, radius] of markers) {
       if (idx == null || !agents[idx]) continue;
@@ -119,7 +119,7 @@ export default function SemanticCanvas() {
     }
 
     const [e1, e2] = engine.projector.explained;
-    ctx.fillStyle = 'rgba(111,132,148,0.85)';
+    ctx.fillStyle = 'rgba(155,155,155,0.85)';
     ctx.font = '11px "IBM Plex Mono", monospace';
     ctx.fillText(`PC1 ${(e1 * 100).toFixed(0)}% · PC2 ${(e2 * 100).toFixed(0)}% of worldview variance`, 14, height - 14);
 
@@ -166,7 +166,7 @@ export default function SemanticCanvas() {
 }
 
 function drawGrid(ctx: CanvasRenderingContext2D, width: number, height: number) {
-  ctx.strokeStyle = 'rgba(27,37,48,0.75)';
+  ctx.strokeStyle = 'rgba(50,50,50,0.4)';
   ctx.lineWidth = 1;
   ctx.beginPath();
   for (let x = 0; x <= width; x += 64) {
