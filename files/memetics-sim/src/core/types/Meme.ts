@@ -13,6 +13,8 @@ export interface Meme {
   id: string;
   rootId: string;
   parentId: string | null;
+  /** All immediate parents; parentId remains the primary lineage/display parent. */
+  parentIds?: string[];
   text: string;
   vector: Vec;
   rationality: number;

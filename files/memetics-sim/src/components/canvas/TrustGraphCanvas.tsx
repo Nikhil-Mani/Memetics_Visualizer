@@ -172,7 +172,7 @@ function ensureLayout(
   const n = engine.agents.length;
   let edgeCount = 0;
   for (const a of engine.agents) edgeCount += a.neighbors.length;
-  const signature = `${n}:${edgeCount}:${engine.config.seed}:${engine.config.rewireProbability}`;
+  const signature = `${n}:${edgeCount}:${engine.networkVersion}:${engine.config.seed}:${engine.config.rewireProbability}`;
   if (ref.current && ref.current.signature === signature) return ref.current;
 
   const xs = new Float32Array(n);

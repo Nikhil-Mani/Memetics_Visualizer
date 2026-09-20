@@ -159,6 +159,7 @@ function downloadVector(meme: Meme) {
     id: meme.id,
     rootId: meme.rootId,
     parentId: meme.parentId,
+    parentIds: meme.parentIds ?? (meme.parentId ? [meme.parentId] : []),
     generation: meme.generation,
     driftDistance: meme.driftDistance,
     vector: Array.from(meme.vector),

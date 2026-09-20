@@ -8,6 +8,7 @@ import ControlPanel from './components/ControlPanel';
 import MetricsBar from './components/MetricsBar';
 import AgentInspector from './components/AgentInspector';
 import EmbeddingPanel from './components/EmbeddingPanel';
+import InterpretationPanel from './components/InterpretationPanel';
 import MemePanel from './components/MemePanel';
 import SemanticCanvas from './components/canvas/SemanticCanvas';
 import TrustGraphCanvas from './components/canvas/TrustGraphCanvas';
@@ -51,16 +52,17 @@ export default function App() {
       <main id="workspace" className="workspace">
         <div className="workspace-label"><span>01 / THE OBSERVATORY</span><span>Drag any panel edge or corner to arrange your workspace.</span></div>
         <ResizablePanel id="metrics" title="Run telemetry" number="01.1" width="100%" height={290} minHeight={180}><MetricsBar /></ResizablePanel>
+        <ResizablePanel id="interpretation" title="How to read the experiment" number="01.2" width="100%" height={250} minHeight={210}><InterpretationPanel /></ResizablePanel>
         <div id="parameters" className="panel-anchor" />
-        <ResizablePanel id="controls" title="Parameters" number="01.2" width="calc(22% - 11px)" height={570}><ControlPanel /></ResizablePanel>
-        <ResizablePanel id="cosmos" title="Semantic observatory" number="01.3" width="calc(50% - 11px)" height={570}>
+        <ResizablePanel id="controls" title="Parameters" number="01.3" width="calc(22% - 11px)" height={570}><ControlPanel /></ResizablePanel>
+        <ResizablePanel id="cosmos" title="Semantic observatory" number="01.4" width="calc(50% - 11px)" height={570}>
           <div className="observatory-toolbar"><div className="flex flex-wrap gap-2">{(['cosmos', 'semantic', 'trust'] as const).map(view => <button key={view} className={mode === view ? 'chip chip-on' : 'chip'} onClick={() => useSimStore.getState().setMode(view)}>{view === 'cosmos' ? 'Meme Cosmos' : view === 'semantic' ? 'Agent space' : 'Trust network'}</button>)}</div><Legend agents={mode !== 'cosmos'} /></div>
           <div className="observatory-canvas">
             {mode === 'cosmos' ? <MemeCosmos /> : mode === 'semantic' ? <SemanticCanvas /> : <TrustGraphCanvas />}
             <p className="canvas-caption">{mode === 'cosmos' ? 'Originals, descendants & the space between. Select a point to trace its lineage.' : mode === 'semantic' ? 'Agent space: each dot is an agent’s worldview; faint links are social ties. Color encodes epistemic rigor.' : 'Blue edges: trust. Colored pulses: shared memes. Select an agent to inspect.'}</p>
           </div>
         </ResizablePanel>
-        <ResizablePanel id="drift" title="Drift & lineage inspector" number="01.4" width="calc(28% - 10px)" height={570}><DriftAnalytics /></ResizablePanel>
+        <ResizablePanel id="drift" title="Drift & lineage inspector" number="01.5" width="calc(28% - 10px)" height={570}><DriftAnalytics /></ResizablePanel>
         <div id="activity" className="workspace-label"><span>02 / THE RECORD</span><span>Every variant leaves a trace.</span></div>
         <ResizablePanel id="memes" title="Meme activity & ancestry" number="02.1" width="calc(58% - 11px)" height={760} minHeight={400}><MemePanel /></ResizablePanel>
         <ResizablePanel id="embeddings" title="Live meme embeddings" number="02.2" width="calc(42% - 11px)" height={760} minHeight={420}><EmbeddingPanel /></ResizablePanel>

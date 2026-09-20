@@ -16,7 +16,7 @@ export function captureEndState(engine: MemeticEngine, selectedId: string) {
   const root = engine.getMeme(end.rootId)!;
   return {
     schemaVersion: 1, capturedAt: new Date().toISOString(), tick: engine.tick, seed: engine.config.seed,
-    config: { ...engine.config }, selectedId, memeId: end.id, rootId: end.rootId, parentId: end.parentId,
+    config: { ...engine.config }, selectedId, memeId: end.id, rootId: end.rootId, parentId: end.parentId, parentIds: end.parentIds ?? (end.parentId ? [end.parentId] : []),
     generation: end.generation, vector: Array.from(end.vector), rootVector: Array.from(root.vector),
     rootText: root.text, driftDistance: end.driftDistance,
     traits: Object.fromEntries(TRAITS.map(t => [t, dot(end.vector, engine.data!.anchors[t])])),

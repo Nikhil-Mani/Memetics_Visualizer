@@ -7,7 +7,7 @@ import type { SimConfig } from './config';
 
 const bookkeeping = () => ({ broadcastCount: 0, penetrationHistory: [], adoptionCount: 0, exposureCount: 0, firstAdopterId: null, peakPenetration: 0, alive: true });
 export function createRoots(data: Dataset): Meme[] {
-  return data.tweets.map((t, i) => ({ ...t, ...bookkeeping(), id: `root_${t.id}`, rootId: `root_${t.id}`, parentId: null,
+  return data.tweets.map((t, i) => ({ ...t, ...bookkeeping(), id: `root_${t.id}`, rootId: `root_${t.id}`, parentId: null, parentIds: [],
     label: t.text, baseLabel: t.text, irrationality: t.rationality, vector: new Float64Array(data.vectors[i]), generation: 0, driftDistance: 0, originTick: 0 }));
 }
 export class EvolutionEngine {
@@ -43,7 +43,7 @@ export class EvolutionEngine {
     const winner = fitness.reduce((best, value, i) => value > fitness[best] ? i : best, 0);
     const vector = candidates[winner], a = alignments[winner];
     const rationality = clamp(0.5 - 0.5 * a[0] + 0.5 * a[1], 0, 1);
-    return { ...parent, ...bookkeeping(), id: `${root.id}_mut_${++this.serial}`, parentId: parent.id,
+    return { ...parent, ...bookkeeping(), id: `${root.id}_mut_${++this.serial}`, parentId: parent.id, parentIds: [parent.id],
       vector, rationality, irrationality: rationality, generation: parent.generation + 1, originTick: tick,
       virality: clamp(0.3 + 0.4 * a[1] + 0.3 * a[3], 0, 1),
       cognitiveLoad: clamp(0.5 + 0.3 * a[0] - 0.3 * a[3], 0, 1),
@@ -63,6 +63,7 @@ export class EvolutionEngine {
       virality: (a.virality + b.virality) / 2, cognitiveLoad: (a.cognitiveLoad + b.cognitiveLoad) / 2 };
     const child = this.mutate(synthetic, root, agent, config, tick, rng);
     child.parentId = a.id;
+    child.parentIds = [a.id, b.id];
     child.generation = Math.max(a.generation, b.generation) + 1;
     return child;
   }

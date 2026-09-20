@@ -125,7 +125,7 @@ export default function MemePanel() {
                       {meme.label}
                     </span>
                     <span className="font-mono tabular-nums text-slate/60">
-                      Gen {meme.generation} · {(engine.holders.get(meme.id)?.size ?? 0) > 0 ? 'live' : 'extinct / unheld'} · {meme.adoptionCount} adoptions
+                      Gen {meme.generation} · {(engine.holders.get(meme.id)?.size ?? 0) > 0 ? 'live' : 'extinct / unheld'} · {meme.adoptionCount} adoptions{(meme.parentIds?.length ?? 0) > 1 ? ' · hybrid' : ''}
                     </span>
                   </button>
                 ))}

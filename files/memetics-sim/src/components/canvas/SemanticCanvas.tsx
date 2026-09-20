@@ -140,7 +140,7 @@ export default function SemanticCanvas() {
     const [e1, e2] = engine.projector.explained;
     ctx.fillStyle = 'rgba(155,155,155,0.85)';
     ctx.font = '11px "IBM Plex Mono", monospace';
-    ctx.fillText(`PC1 ${(e1 * 100).toFixed(0)}% · PC2 ${(e2 * 100).toFixed(0)}% of worldview variance`, 14, height - 14);
+    ctx.fillText(`Fixed PCA basis · PC1 ${(e1 * 100).toFixed(0)}% · PC2 ${(e2 * 100).toFixed(0)}% of worldview variance`, 14, height - 14);
 
     // Store the transform for hit testing.
     hitTransform.current = { px, py };

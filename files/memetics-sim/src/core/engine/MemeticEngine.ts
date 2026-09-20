@@ -77,6 +77,7 @@ export class MemeticEngine {
 
   projector = new PcaProjector();
   clustering = 0;
+  networkVersion = 0;
 
   rationalityHistory = new History();
   climateHistory = new History();
@@ -133,6 +134,7 @@ export class MemeticEngine {
     this.bimodalityHistory = new History();
     this.susceptibilityHistory = new History();
     this.projector = new PcaProjector();
+    this.networkVersion = 0;
 
     const n = config.agentCount;
     const adjacency = buildSmallWorld(n, config.meanDegree, config.rewireProbability, this.rng);
@@ -535,6 +537,7 @@ export class MemeticEngine {
       if (!replacement.neighbors.includes(agent.index)) replacement.neighbors.push(agent.index);
     }
     this.clustering = clusteringCoefficient(this.agents.map(a => a.neighbors));
+    this.networkVersion++;
   }
 
   /**
@@ -955,15 +958,20 @@ export class MemeticEngine {
     const family = [...this.memes.values(), ...this.archivedMemes.values()].filter((m) => m.rootId === meme.rootId);
     const byParent = new Map<string | null, Meme[]>();
     for (const m of family) {
-      const key = m.parentId;
-      if (!byParent.has(key)) byParent.set(key, []);
-      byParent.get(key)!.push(m);
+      const parentIds = m.parentIds?.length ? m.parentIds : m.parentId ? [m.parentId] : [null];
+      for (const key of parentIds) {
+        if (!byParent.has(key)) byParent.set(key, []);
+        byParent.get(key)!.push(m);
+      }
     }
     const root = this.getMeme(meme.rootId);
     const out: { meme: Meme; depth: number }[] = [];
     const stack = root ? [{ meme: root, depth: 0 }] : [];
+    const seen = new Set<string>();
     while (stack.length) {
       const entry = stack.pop()!;
+      if (seen.has(entry.meme.id)) continue;
+      seen.add(entry.meme.id);
       out.push(entry);
       const kids = (byParent.get(entry.meme.id) ?? []).sort((a, b) => b.adoptionCount - a.adoptionCount);
       for (let i = kids.length - 1; i >= 0; i--) stack.push({ meme: kids[i], depth: entry.depth + 1 });
