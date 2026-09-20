@@ -152,6 +152,8 @@ After adoption:
 
 Rigor and susceptibility are plastic in the current implementation. Bounded confidence and learning rate vary between agents but are not dynamically adapted by these plasticity equations.
 
+The current engine also gives each agent heterogeneous attention, novelty seeking, and confirmation bias. Repeated exposure builds familiarity but eventually creates fatigue, while attention scales the final adoption probability. Every 24 ticks, very weak trust ties can be replaced by a high-trust, semantically compatible connection. Mutations now adapt their total variance to virality, rigor, and cognitive load, and a subset of mutations recombine two memes before selection. These additions make drift depend on memory, identity, and network structure instead of only on the current meme vector.
+
 ### E. Trust responds later
 
 After an evaluation delay, receivers revisit earlier shares. A prestige-oriented component rewards content that spread; a rigor-oriented component considers the meme’s irrationality and spread. Their relative influence depends on the receiver’s susceptibility and rigor.

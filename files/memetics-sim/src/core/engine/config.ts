@@ -15,6 +15,9 @@ export interface SimConfig {
   initialSusceptibility: number;
   initialBoundedConfidence: number;
   initialLearningRate: number;
+  initialAttention: number;
+  initialNoveltySeeking: number;
+  initialConfirmationBias: number;
 
   // Transmission
   broadcastRate: number; // per-agent probability of broadcasting on a tick
@@ -38,10 +41,12 @@ export interface SimConfig {
 
 export const DEFAULT_CONFIG: SimConfig = {
   platformSelection: 0.65,
-  platformRigor: 0.1,
-  platformOutrage: 1,
+  // The baseline keeps a meaningful counter-pressure for careful content;
+  // the cascade preset below still demonstrates collapse deliberately.
+  platformRigor: 0.35,
+  platformOutrage: 0.8,
   platformAbsurdity: 0.4,
-  platformSimplicity: 0.8,
+  platformSimplicity: 0.6,
   seed: 20260918,
   agentCount: 320,
   meanDegree: 8,
@@ -52,6 +57,9 @@ export const DEFAULT_CONFIG: SimConfig = {
   initialSusceptibility: 0.45,
   initialBoundedConfidence: 0.55,
   initialLearningRate: 0.12,
+  initialAttention: 0.72,
+  initialNoveltySeeking: 0.52,
+  initialConfirmationBias: 0.48,
 
   broadcastRate: 0.14,
   fanout: 2,
@@ -60,7 +68,7 @@ export const DEFAULT_CONFIG: SimConfig = {
   trustLearningRate: 0.05,
   evaluationDelay: 12,
 
-  driftDelta: 0.012,
+  driftDelta: 0.008,
   conformityRate: 0.004,
 
   injectionRate: 0.25,

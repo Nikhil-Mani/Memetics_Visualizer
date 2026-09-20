@@ -141,7 +141,25 @@ export class MemeticEngine {
     // Community anchors: agents near each other on the ring start ideologically
     // close, which is what lets low rewiring produce genuine echo chambers.
     const communityCount = Math.max(3, Math.round(n / 60));
-    const anchors: Vec[] = Array.from({ length: communityCount }, () => this.roots[this.rng.int(this.roots.length)].vector);
+    // Pick separated source tweets for the initial communities. Random roots
+    // can be near-duplicates in embedding space, which makes every community
+    // start on top of the others before the simulation even begins.
+    const anchors: Vec[] = [];
+    const first = this.roots[this.rng.int(this.roots.length)].vector;
+    anchors.push(first);
+    while (anchors.length < communityCount) {
+      let best: Vec | null = null;
+      let bestDistance = -Infinity;
+      for (const candidate of this.roots) {
+        const distance = Math.min(...anchors.map(anchor => 1 - dot(anchor, candidate.vector)));
+        if (distance > bestDistance) {
+          bestDistance = distance;
+          best = candidate.vector;
+        }
+      }
+      if (!best) break;
+      anchors.push(best);
+    }
 
     this.agents = [];
     for (let i = 0; i < n; i++) {
@@ -149,7 +167,7 @@ export class MemeticEngine {
       const agent: Agent = {
         id: `a${i}`,
         index: i,
-        worldview: jitterUnit(anchor, 0.45 / Math.sqrt(anchor.length), this.rng),
+        worldview: jitterUnit(anchor, 0.7 / Math.sqrt(anchor.length), this.rng),
         epistemicRigor: clamp(
           this.rng.normal(config.initialRigor, config.initialRigorSpread),
           0.05,
@@ -166,10 +184,14 @@ export class MemeticEngine {
           0.9,
         ),
         learningRate: clamp(this.rng.normal(config.initialLearningRate, 0.04), 0.01, 0.4),
+        attention: clamp(this.rng.normal(config.initialAttention, 0.12), 0.2, 1),
+        noveltySeeking: clamp(this.rng.normal(config.initialNoveltySeeking, 0.15), 0.02, 0.98),
+        confirmationBias: clamp(this.rng.normal(config.initialConfirmationBias, 0.14), 0.02, 0.98),
         peerTrust: new Map(),
         pendingMemeReceipts: [],
         trustEvents: [],
         inventory: new Map(),
+        memeMemory: new Map(),
         cognitiveLog: [],
         plasticityHistory: [],
         neighbors: adjacency[i],
@@ -261,6 +283,7 @@ export class MemeticEngine {
     this.injectContent();
     this.broadcastPhase();
     this.retrospectiveTrustPhase();
+    this.rewirePhase();
     this.socialContagionPhase();
     this.decayPhase();
 
@@ -318,7 +341,21 @@ export class MemeticEngine {
       // Mutation on re-broadcast.
       let payload = entry.meme;
       if (this.rng.next() < mutationProbability) {
-        payload = this.evolution!.mutate(entry.meme, this.memes.get(entry.meme.rootId)!, sender, this.config, this.tick, this.rng);
+        const partners = [...sender.inventory.values()].filter(candidate => candidate.meme.id !== entry.meme.id);
+        if (partners.length > 0 && this.rng.next() < 0.22) {
+          const partner = this.rng.pick(partners).meme;
+          payload = this.evolution!.recombine(
+            entry.meme,
+            partner,
+            this.memes.get(entry.meme.rootId) ?? this.roots[0],
+            sender,
+            this.config,
+            this.tick,
+            this.rng,
+          );
+        } else {
+          payload = this.evolution!.mutate(entry.meme, this.memes.get(entry.meme.rootId)!, sender, this.config, this.tick, this.rng);
+        }
         this.registerMeme(payload);
       }
       payload.broadcastCount++;
@@ -361,6 +398,14 @@ export class MemeticEngine {
   private transmit(sender: Agent, receiver: Agent, meme: Meme): void {
     meme.exposureCount++;
 
+    const memory = receiver.memeMemory.get(meme.id) ?? { exposures: 0, lastSeen: this.tick, familiarity: 0, fatigue: 0 };
+    const gap = Math.max(0, this.tick - memory.lastSeen);
+    memory.exposures++;
+    memory.lastSeen = this.tick;
+    memory.familiarity = clamp(memory.familiarity * Math.exp(-gap / 24) + 0.18, 0, 1);
+    memory.fatigue = clamp(memory.fatigue * Math.exp(-gap / 18) + (memory.exposures > 1 ? 0.08 : 0), 0, 1);
+    receiver.memeMemory.set(meme.id, memory);
+
     const affinity = dot(receiver.worldview, meme.vector);
     const threshold = 1 - receiver.boundedConfidence;
     const trust = trustIn(receiver, sender.id);
@@ -393,7 +438,10 @@ export class MemeticEngine {
       3.0 * (receiver.emotionalSusceptibility * meme.virality) -
       2.5 * (receiver.epistemicRigor * meme.cognitiveLoad) -
       1.5 * (meme.irrationality * receiver.epistemicRigor);
-    const pAccept = sigmoid(z);
+    const novelty = memory.exposures === 1 ? receiver.noveltySeeking * 0.35 : -memory.fatigue;
+    const confirmation = receiver.confirmationBias * Math.max(0, affinity) * 0.8;
+    const attention = 0.65 + 0.7 * receiver.attention;
+    const pAccept = sigmoid((z + novelty + confirmation) * attention);
     const accepted = this.rng.next() < pAccept;
 
     this.pushPulse(sender.index, receiver.index, meme.irrationality, accepted);
@@ -415,7 +463,16 @@ export class MemeticEngine {
 
     // Worldview shift: w' = normalize((1 - alpha) w + alpha M)
     const before = receiver.worldview;
-    receiver.worldview = lerpNormalized(before, meme.vector, receiver.learningRate);
+    // Bounded confidence also controls *how far* a compatible meme can move
+    // an agent. A barely accepted meme should not erase the agent's worldview
+    // in one update; a close match still receives the full learning rate.
+    const confidenceSpan = Math.max(1e-6, receiver.boundedConfidence);
+    const influence = receiver.learningRate * clamp(
+      (affinity - threshold) / confidenceSpan,
+      0.12,
+      1,
+    );
+    receiver.worldview = lerpNormalized(before, meme.vector, influence);
     const shift = 1 - dot(before, receiver.worldview);
 
     this.grantMeme(receiver, meme, clamp(0.45 + 0.4 * pAccept, 0, 1));
@@ -454,6 +511,30 @@ export class MemeticEngine {
         `${driver} (P=${pAccept.toFixed(2)}). Adopted. Worldview shifted ${shift.toFixed(3)}. ` +
         `Rigor ${rigorDelta >= 0 ? 'trained' : 'degraded'} by ${rigorDelta.toFixed(3)}.`,
     });
+  }
+
+  /** Trust-driven rewiring: weak ties decay, compatible trusted ties attract. */
+  private rewirePhase(): void {
+    if (this.tick % 24 !== 0) return;
+    for (const agent of this.agents) {
+      if (agent.neighbors.length < 2) continue;
+      const weakest = agent.neighbors
+        .map(peer => ({ peer, trust: trustIn(agent, this.agents[peer].id) }))
+        .sort((a, b) => a.trust - b.trust)[0];
+      if (!weakest || weakest.trust > 0.28 || this.rng.next() > 0.35) continue;
+      const candidates = this.agents
+        .filter(other => other.index !== agent.index && !agent.neighbors.includes(other.index))
+        .map(other => ({ other, score: trustIn(agent, other.id) + 0.5 * dot(agent.worldview, other.worldview) }))
+        .sort((a, b) => b.score - a.score);
+      const replacement = candidates[0]?.other;
+      if (!replacement) continue;
+      agent.neighbors = agent.neighbors.filter(peer => peer !== weakest.peer);
+      agent.neighbors.push(replacement.index);
+      const reverse = this.agents[weakest.peer].neighbors;
+      this.agents[weakest.peer].neighbors = reverse.filter(peer => peer !== agent.index);
+      if (!replacement.neighbors.includes(agent.index)) replacement.neighbors.push(agent.index);
+    }
+    this.clustering = clusteringCoefficient(this.agents.map(a => a.neighbors));
   }
 
   /**
@@ -603,6 +684,12 @@ export class MemeticEngine {
   private decayPhase(): void {
     const decay = this.config.convictionDecay;
     for (const agent of this.agents) {
+      for (const [id, memory] of agent.memeMemory) {
+        const age = this.tick - memory.lastSeen;
+        memory.familiarity *= Math.exp(-1 / 48);
+        memory.fatigue *= Math.exp(-1 / 30);
+        if (age > 180 && memory.familiarity < 0.03) agent.memeMemory.delete(id);
+      }
       for (const [id, entry] of agent.inventory) {
         entry.conviction -= decay;
         if (entry.conviction <= 0.05) this.dropMeme(agent, id);

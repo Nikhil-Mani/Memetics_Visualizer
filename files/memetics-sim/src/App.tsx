@@ -7,6 +7,7 @@ import { ANCHOR_PHRASES, TRAITS } from './core/data/loadDataset';
 import ControlPanel from './components/ControlPanel';
 import MetricsBar from './components/MetricsBar';
 import AgentInspector from './components/AgentInspector';
+import EmbeddingPanel from './components/EmbeddingPanel';
 import MemePanel from './components/MemePanel';
 import SemanticCanvas from './components/canvas/SemanticCanvas';
 import TrustGraphCanvas from './components/canvas/TrustGraphCanvas';
@@ -56,13 +57,14 @@ export default function App() {
           <div className="observatory-toolbar"><div className="flex flex-wrap gap-2">{(['cosmos', 'semantic', 'trust'] as const).map(view => <button key={view} className={mode === view ? 'chip chip-on' : 'chip'} onClick={() => useSimStore.getState().setMode(view)}>{view === 'cosmos' ? 'Meme Cosmos' : view === 'semantic' ? 'Agent space' : 'Trust network'}</button>)}</div><Legend agents={mode !== 'cosmos'} /></div>
           <div className="observatory-canvas">
             {mode === 'cosmos' ? <MemeCosmos /> : mode === 'semantic' ? <SemanticCanvas /> : <TrustGraphCanvas />}
-            <p className="canvas-caption">{mode === 'cosmos' ? 'Originals, descendants & the space between. Select a point to trace its lineage.' : mode === 'semantic' ? 'Worldviews in motion. Select an agent to inspect.' : 'Blue edges: trust. Colored pulses: shared memes. Select an agent to inspect.'}</p>
+            <p className="canvas-caption">{mode === 'cosmos' ? 'Originals, descendants & the space between. Select a point to trace its lineage.' : mode === 'semantic' ? 'Agent space: each dot is an agent’s worldview; faint links are social ties. Color encodes epistemic rigor.' : 'Blue edges: trust. Colored pulses: shared memes. Select an agent to inspect.'}</p>
           </div>
         </ResizablePanel>
         <ResizablePanel id="drift" title="Drift & lineage inspector" number="01.4" width="calc(28% - 10px)" height={570}><DriftAnalytics /></ResizablePanel>
         <div id="activity" className="workspace-label"><span>02 / THE RECORD</span><span>Every variant leaves a trace.</span></div>
-        <ResizablePanel id="memes" title="Meme activity & ancestry" number="02.1" width="calc(70% - 8px)" height={760} minHeight={400}><MemePanel /></ResizablePanel>
-        <ResizablePanel id="agents" title="Agent inspector" number="02.2" width="calc(30% - 8px)" height={760}><AgentInspector /></ResizablePanel>
+        <ResizablePanel id="memes" title="Meme activity & ancestry" number="02.1" width="calc(58% - 11px)" height={760} minHeight={400}><MemePanel /></ResizablePanel>
+        <ResizablePanel id="embeddings" title="Live meme embeddings" number="02.2" width="calc(42% - 11px)" height={760} minHeight={420}><EmbeddingPanel /></ResizablePanel>
+        <ResizablePanel id="agents" title="Agent inspector" number="02.3" width="100%" height={520}><AgentInspector /></ResizablePanel>
         <ResizablePanel id="end-state" title="End-state embedding & meaning" number="03.1" width="100%" height={480}><EndStatePanel /></ResizablePanel>
       </main>
       <footer className="site-footer"><span>DRIFT / 256-DIMENSIONAL CULTURAL EVOLUTION</span><span>Observe. Question. Repeat.</span><a href="#workspace">Back to workspace ↑</a></footer>

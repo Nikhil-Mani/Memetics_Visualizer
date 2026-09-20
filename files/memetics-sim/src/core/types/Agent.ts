@@ -47,6 +47,9 @@ export interface Agent {
   emotionalSusceptibility: number; // eps  [0, 1]
   boundedConfidence: number; // tau  [0.05, 0.90]
   learningRate: number; // alpha [0.01, 0.40]
+  attention: number; // available attention [0, 1]
+  noveltySeeking: number; // preference for unfamiliar content [0, 1]
+  confirmationBias: number; // preference for worldview-consistent content [0, 1]
 
   // Relational memory
   peerTrust: Map<string, number>; // T_{j->i}, default 0.5
@@ -54,6 +57,7 @@ export interface Agent {
   trustEvents: TrustEvent[];
 
   inventory: Map<string, InventoryEntry>;
+  memeMemory: Map<string, { exposures: number; lastSeen: number; familiarity: number; fatigue: number }>;
   cognitiveLog: CognitiveLogEntry[];
   plasticityHistory: PlasticitySample[];
 

@@ -20,10 +20,20 @@ export class EvolutionEngine {
     const weights = platform.map((p, i) => config.platformSelection * p + (1 - config.platformSelection) * biases[i]);
     const candidates = Array.from({ length: 5 }, () => {
       const v = new Float64Array(parent.vector);
-      const alpha = TRAITS.map(() => rng.normal(0, Math.sqrt(parent.mutationVariance)));
+      const variance = clamp(
+        parent.mutationVariance * (0.65 + 0.8 * parent.virality) * (1.25 - agent.epistemicRigor * 0.5),
+        0.0005,
+        0.2,
+      );
+      const alpha = TRAITS.map(() => rng.normal(0, Math.sqrt(variance)));
+      // mutationVariance is the intended total isotropic mutation energy. If
+      // we use sqrt(variance) independently in all 256 coordinates, the
+      // aggregate noise norm grows by sqrt(256) and erases the parent vector.
+      // Divide by dimension so candidates remain local semantic mutations.
+      const coordinateSd = Math.sqrt(variance / v.length);
       for (let d = 0; d < v.length; d++) {
         for (let k = 0; k < TRAITS.length; k++) v[d] -= alpha[k] * this.anchors[TRAITS[k]][d];
-        v[d] += rng.normal(0, Math.sqrt(parent.mutationVariance));
+        v[d] += rng.normal(0, coordinateSd);
       }
       return normalize(v);
     });
@@ -42,5 +52,18 @@ export class EvolutionEngine {
         agentWeights: biases.map(b => b * (1 - config.platformSelection)), weights,
         deltas: Object.fromEntries(TRAITS.map((k, i) => [k, a[i] - dot(parent.vector, this.anchors[k])])) as Record<Trait, number> },
     };
+  }
+
+  /** Recombine two circulating memes before applying local mutation noise. */
+  recombine(a: Meme, b: Meme, root: Meme, agent: Agent, config: SimConfig, tick: number, rng: Rng): Meme {
+    const mix = 0.35 + rng.next() * 0.3;
+    const blended = new Float64Array(a.vector.length);
+    for (let d = 0; d < blended.length; d++) blended[d] = mix * a.vector[d] + (1 - mix) * b.vector[d];
+    const synthetic = { ...a, vector: normalize(blended), mutationVariance: (a.mutationVariance + b.mutationVariance) / 2,
+      virality: (a.virality + b.virality) / 2, cognitiveLoad: (a.cognitiveLoad + b.cognitiveLoad) / 2 };
+    const child = this.mutate(synthetic, root, agent, config, tick, rng);
+    child.parentId = a.id;
+    child.generation = Math.max(a.generation, b.generation) + 1;
+    return child;
   }
 }

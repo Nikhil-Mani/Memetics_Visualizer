@@ -1,4 +1,4 @@
-import { D, normalize, norm } from '../math/vector';
+import { D, dot, normalize, norm } from '../math/vector';
 
 export const TRAITS = ['rigor', 'outrage', 'absurdity', 'simplicity'] as const;
 export type Trait = typeof TRAITS[number];
@@ -51,13 +51,37 @@ export function parseNpy(buffer: ArrayBuffer, rows = 200): Float64Array[] {
 }
 export function parseAnchors(value: unknown): TraitAnchors {
   if (!value || typeof value !== 'object') throw new Error('Invalid trait anchors');
-  return Object.fromEntries(TRAITS.map(key => {
+  const raw = TRAITS.map(key => {
     const v = (value as Record<string, unknown>)[key];
     if (!Array.isArray(v) || v.length !== D || !v.every(x => typeof x === 'number' && Number.isFinite(x))) throw new Error(`Anchor ${key} must contain 256 finite numbers`);
     const vector = new Float64Array(v);
     if (norm(vector) < 1e-12) throw new Error(`Anchor ${key} is zero`);
-    return [key, normalize(vector)];
-  })) as TraitAnchors;
+    return normalize(vector);
+  });
+
+  // Sentence embeddings carry a large shared “language” direction. Without
+  // calibration, the four trait cosines become nearly identical (for example
+  // +0.94 on every axis) and the UI appears to say that every worldview has
+  // every trait. Remove the common component and Gram–Schmidt the remaining
+  // directions so each displayed coordinate measures a distinct trait pole.
+  const common = new Float64Array(D);
+  for (const vector of raw) for (let d = 0; d < D; d++) common[d] += vector[d];
+  normalize(common);
+  const axes: Float64Array[] = [];
+  for (let i = 0; i < raw.length; i++) {
+    const axis = new Float64Array(D);
+    // Remove most of the shared direction while retaining a small component;
+    // fully projecting it out would make four centered anchors rank-three.
+    const shared = 0.85 * dot(raw[i], common);
+    for (let d = 0; d < D; d++) axis[d] = raw[i][d] - shared * common[d];
+    for (const previous of axes) {
+      const projection = dot(axis, previous);
+      for (let d = 0; d < D; d++) axis[d] -= projection * previous[d];
+    }
+    if (norm(axis) < 1e-6) throw new Error(`Trait anchor ${TRAITS[i]} is not independent after calibration`);
+    axes.push(normalize(axis));
+  }
+  return Object.fromEntries(TRAITS.map((key, i) => [key, axes[i]])) as TraitAnchors;
 }
 export async function loadDataset(): Promise<Dataset> {
   const fetchFile = async (name: string) => {

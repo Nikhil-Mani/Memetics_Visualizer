@@ -61,6 +61,11 @@ export default function AgentInspector() {
         <p className="mt-3 text-xs text-slate">
           Learning rate α {num(agent.learningRate)} — worldview shift per accepted meme.
         </p>
+        <div className="mt-3 grid grid-cols-3 gap-2 text-[10px] text-slate">
+          <span>attention <b className="font-mono text-mist">{num(agent.attention)}</b></span>
+          <span>novelty <b className="font-mono text-mist">{num(agent.noveltySeeking)}</b></span>
+          <span>confirmation <b className="font-mono text-mist">{num(agent.confirmationBias)}</b></span>
+        </div>
       </section>
 
       <section className="border-b border-hair px-5 py-4">
@@ -92,7 +97,7 @@ export default function AgentInspector() {
           })}
         </div>
         <p className="mt-2 text-[11px] leading-snug text-slate/80">
-          Cosine alignment with externally encoded semantic anchors (−1 to +1).
+          Calibrated cosine alignment with the four externally encoded trait poles (−1 to +1).
         </p>
       </section>
 

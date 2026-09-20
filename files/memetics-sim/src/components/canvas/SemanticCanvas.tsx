@@ -59,6 +59,25 @@ export default function SemanticCanvas() {
 
     drawGrid(ctx, width, height);
 
+    // Agent space is the worldview projection, with the social graph laid
+    // over it. This makes the population structure visible without confusing
+    // semantic proximity (position) with peer connection (line).
+    ctx.lineWidth = 0.7;
+    for (const a of agents) {
+      for (const j of a.neighbors) {
+        if (j <= a.index || !agents[j]) continue;
+        const b = agents[j];
+        const rigor = (a.epistemicRigor + b.epistemicRigor) / 2;
+        const [r, g, bl] = ramp(1 - rigor);
+        const trust = ((a.peerTrust.get(b.id) ?? 0.5) + (b.peerTrust.get(a.id) ?? 0.5)) / 2;
+        ctx.strokeStyle = `rgba(${r},${g},${bl},${(0.08 + 0.2 * trust).toFixed(3)})`;
+        ctx.beginPath();
+        ctx.moveTo(px(a.x), py(a.y));
+        ctx.lineTo(px(b.x), py(b.y));
+        ctx.stroke();
+      }
+    }
+
     // --- trails, batched into colour bins -----------------------------------
     if (showTrails) {
       for (let bin = 0; bin < BINS; bin++) {
